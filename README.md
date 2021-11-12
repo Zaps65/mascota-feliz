@@ -1,7 +1,7 @@
 # mascota-feliz
 Grupo 15
 
-The Chicken´s the best
+The Chicken´s 
 
 - Lider: Sebastian
 - Diseño de software: Raul
