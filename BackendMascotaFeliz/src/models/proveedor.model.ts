@@ -42,7 +42,7 @@ export class Proveedor extends Entity {
 
   @property({
     type: 'string',
-    default: None,
+    default: '',
   })
   telefono2?: string;
 

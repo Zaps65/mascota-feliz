@@ -17,7 +17,7 @@ import {
 } from '@loopback/rest';
 import {
 Plan,
-PlanMascota,
+PlanesMascotas,
 Mascota,
 } from '../models';
 import {PlanRepository} from '../repositories';
@@ -30,7 +30,7 @@ export class PlanMascotaController {
   @get('/plans/{id}/mascotas', {
     responses: {
       '200': {
-        description: 'Array of Plan has many Mascota through PlanMascota',
+        description: 'Array of Plan has many Mascota through PlanesMascotas',
         content: {
           'application/json': {
             schema: {type: 'array', items: getModelSchemaRef(Mascota)},

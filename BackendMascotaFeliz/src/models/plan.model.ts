@@ -1,8 +1,6 @@
 import {Entity, model, property, hasMany} from '@loopback/repository';
-import {PedidoPlan} from './pedido-plan.model';
-import {LineaPlanes} from './linea-planes.model';
 import {Mascota} from './mascota.model';
-import {PlanMascota} from './plan-mascota.model';
+import {PlanesMascotas} from './planes-mascotas.model';
 
 @model()
 export class Plan extends Entity {
@@ -31,10 +29,7 @@ export class Plan extends Entity {
   })
   foto: string;
 
-  @hasMany(() => PedidoPlan, {through: {model: () => LineaPlanes}})
-  pedidoPlans: PedidoPlan[];
-
-  @hasMany(() => Mascota, {through: {model: () => PlanMascota}})
+  @hasMany(() => Mascota, {through: {model: () => PlanesMascotas}})
   mascotas: Mascota[];
 
   constructor(data?: Partial<Plan>) {

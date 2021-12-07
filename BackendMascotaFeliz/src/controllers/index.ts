@@ -13,3 +13,7 @@ export * from './productos-pedido-producto.controller';
 export * from './plan-pedido-plan.controller';
 export * from './servicios-pedido-servicio.controller';
 export * from './plan-mascota.controller';
+export * from './pedido-plan-plan.controller';
+export * from './pedido-plan-plan.controller';
+export * from './pedido-producto-productos.controller';
+export * from './pedido-servicio-servicios.controller';

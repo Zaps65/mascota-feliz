@@ -19,3 +19,4 @@ export * from './linea-planes.repository';
 export * from './linea-productos.repository';
 export * from './linea-servicios.repository';
 export * from './plan-mascota.repository';
+export * from './planes-mascotas.repository';

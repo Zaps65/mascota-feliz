@@ -1,6 +1,4 @@
 import {Entity, model, property, hasMany} from '@loopback/repository';
-import {PedidoServicio} from './pedido-servicio.model';
-import {LineaServicios} from './linea-servicios.model';
 
 @model()
 export class Servicios extends Entity {
@@ -28,9 +26,6 @@ export class Servicios extends Entity {
     required: true,
   })
   foto: string;
-
-  @hasMany(() => PedidoServicio, {through: {model: () => LineaServicios}})
-  pedidoServicios: PedidoServicio[];
 
   constructor(data?: Partial<Servicios>) {
     super(data);

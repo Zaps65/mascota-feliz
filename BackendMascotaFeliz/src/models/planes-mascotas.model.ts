@@ -1,7 +1,14 @@
 import {Entity, model, property} from '@loopback/repository';
 
 @model()
-export class PlanMascota extends Entity {
+export class PlanesMascotas extends Entity {
+  @property({
+    type: 'string',
+    id: true,
+    generated: true,
+  })
+  id?: string;
+
   @property({
     type: 'date',
     required: true,
@@ -30,13 +37,13 @@ export class PlanMascota extends Entity {
   })
   mascotaId?: string;
 
-  constructor(data?: Partial<PlanMascota>) {
+  constructor(data?: Partial<PlanesMascotas>) {
     super(data);
   }
 }
 
-export interface PlanMascotaRelations {
+export interface PlanesMascotasRelations {
   // describe navigational properties here
 }
 
-export type PlanMascotaWithRelations = PlanMascota & PlanMascotaRelations;
+export type PlanesMascotasWithRelations = PlanesMascotas & PlanesMascotasRelations;

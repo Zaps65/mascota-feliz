@@ -19,3 +19,4 @@ export * from './plan-mascota.model';
 export * from './linea-productos.model';
 export * from './linea-servicios.model';
 export * from './linea-planes.model';
+export * from './planes-mascotas.model';
