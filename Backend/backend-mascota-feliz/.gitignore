@@ -62,3 +62,6 @@ typings/
 
 # Cache used by TypeScript's incremental build
 *.tsbuildinfo
+
+#DataBase Password
+src/datasources/passwordDB.ts
