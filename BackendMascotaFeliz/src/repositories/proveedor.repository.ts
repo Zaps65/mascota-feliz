@@ -1,6 +1,6 @@
 import {inject, Getter} from '@loopback/core';
 import {DefaultCrudRepository, repository, HasManyRepositoryFactory} from '@loopback/repository';
-import {MongodbDataSource} from '../datasources';
+import {MongoDbDataSource} from '../datasources';
 import {Proveedor, ProveedorRelations, Productos} from '../models';
 import {ProductosRepository} from './productos.repository';
 
@@ -13,7 +13,7 @@ export class ProveedorRepository extends DefaultCrudRepository<
   public readonly productos: HasManyRepositoryFactory<Productos, typeof Proveedor.prototype.id>;
 
   constructor(
-    @inject('datasources.mongodb') dataSource: MongodbDataSource, @repository.getter('ProductosRepository') protected productosRepositoryGetter: Getter<ProductosRepository>,
+    @inject('datasources.MongoDB') dataSource: MongoDbDataSource, @repository.getter('ProductosRepository') protected productosRepositoryGetter: Getter<ProductosRepository>,
   ) {
     super(Proveedor, dataSource);
     this.productos = this.createHasManyRepositoryFactoryFor('productos', productosRepositoryGetter,);

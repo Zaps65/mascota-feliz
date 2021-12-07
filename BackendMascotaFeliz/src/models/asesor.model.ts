@@ -1,6 +1,7 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany} from '@loopback/repository';
+import {SolicitudAfiliacion} from './solicitud-afiliacion.model';
 
-@model({settings: {strict: false}})
+@model()
 export class Asesor extends Entity {
   @property({
     type: 'string',
@@ -53,15 +54,11 @@ export class Asesor extends Entity {
 
   @property({
     type: 'string',
-    required: true,
   })
-  clave: string;
+  clave?: string;
 
-  // Define well-known properties here
-
-  // Indexer property to allow additional data
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [prop: string]: any;
+  @hasMany(() => SolicitudAfiliacion)
+  solicitudAfiliacions: SolicitudAfiliacion[];
 
   constructor(data?: Partial<Asesor>) {
     super(data);

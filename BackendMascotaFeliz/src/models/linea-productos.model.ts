@@ -18,7 +18,7 @@ export class LineaProductos extends Entity {
   @property({
     type: 'string',
   })
-  pedidoProductoId?: string;
+  pedidoProductosId?: string;
 
   @property({
     type: 'string',

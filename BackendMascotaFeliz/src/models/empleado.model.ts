@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany} from '@loopback/repository';
+import {HistorialVisitaDomiciliaria} from './historial-visita-domiciliaria.model';
 
 @model()
 export class Empleado extends Entity {
@@ -69,6 +70,8 @@ export class Empleado extends Entity {
   })
   fecha_ingreso: string;
 
+  @hasMany(() => HistorialVisitaDomiciliaria)
+  historialVisitaDomiciliarias: HistorialVisitaDomiciliaria[];
 
   constructor(data?: Partial<Empleado>) {
     super(data);

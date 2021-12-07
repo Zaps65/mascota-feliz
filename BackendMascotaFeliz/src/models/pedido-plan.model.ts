@@ -1,6 +1,7 @@
 import {Entity, model, property, belongsTo, hasMany} from '@loopback/repository';
 import {Propietario} from './propietario.model';
-import {Plan} from './plan.model';
+import {Mascota} from './mascota.model';
+import {Planes} from './planes.model';
 import {LineaPlanes} from './linea-planes.model';
 
 @model()
@@ -38,8 +39,11 @@ export class PedidoPlan extends Entity {
   @belongsTo(() => Propietario)
   propietarioId: string;
 
-  @hasMany(() => Plan, {through: {model: () => LineaPlanes}})
-  plans: Plan[];
+  @belongsTo(() => Mascota)
+  mascotaId: string;
+
+  @hasMany(() => Planes, {through: {model: () => LineaPlanes}})
+  planes: Planes[];
 
   constructor(data?: Partial<PedidoPlan>) {
     super(data);

@@ -1,6 +1,6 @@
 import {inject} from '@loopback/core';
 import {DefaultCrudRepository} from '@loopback/repository';
-import {MongodbDataSource} from '../datasources';
+import {MongoDbDataSource} from '../datasources';
 import {LineaPlanes, LineaPlanesRelations} from '../models';
 
 export class LineaPlanesRepository extends DefaultCrudRepository<
@@ -9,7 +9,7 @@ export class LineaPlanesRepository extends DefaultCrudRepository<
   LineaPlanesRelations
 > {
   constructor(
-    @inject('datasources.mongodb') dataSource: MongodbDataSource,
+    @inject('datasources.MongoDB') dataSource: MongoDbDataSource,
   ) {
     super(LineaPlanes, dataSource);
   }

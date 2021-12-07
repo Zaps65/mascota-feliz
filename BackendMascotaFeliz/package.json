@@ -1,7 +1,7 @@
 {
   "name": "backend-mascota-feliz",
   "version": "0.0.1",
-  "description": "Backend de una tienda llamada Mascota Feliz",
+  "description": "Es un gestos de operaciones que se realizan en una tienda de mascotas.",
   "keywords": [
     "loopback-application",
     "loopback"

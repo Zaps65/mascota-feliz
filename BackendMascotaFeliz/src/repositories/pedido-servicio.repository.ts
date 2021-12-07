@@ -1,6 +1,6 @@
 import {inject, Getter} from '@loopback/core';
 import {DefaultCrudRepository, repository, BelongsToAccessor, HasManyThroughRepositoryFactory} from '@loopback/repository';
-import {MongodbDataSource} from '../datasources';
+import {MongoDbDataSource} from '../datasources';
 import {PedidoServicio, PedidoServicioRelations, Propietario, Servicios, LineaServicios} from '../models';
 import {PropietarioRepository} from './propietario.repository';
 import {LineaServiciosRepository} from './linea-servicios.repository';
@@ -20,7 +20,7 @@ export class PedidoServicioRepository extends DefaultCrudRepository<
         >;
 
   constructor(
-    @inject('datasources.mongodb') dataSource: MongodbDataSource, @repository.getter('PropietarioRepository') protected propietarioRepositoryGetter: Getter<PropietarioRepository>, @repository.getter('LineaServiciosRepository') protected lineaServiciosRepositoryGetter: Getter<LineaServiciosRepository>, @repository.getter('ServiciosRepository') protected serviciosRepositoryGetter: Getter<ServiciosRepository>,
+    @inject('datasources.MongoDB') dataSource: MongoDbDataSource, @repository.getter('PropietarioRepository') protected propietarioRepositoryGetter: Getter<PropietarioRepository>, @repository.getter('LineaServiciosRepository') protected lineaServiciosRepositoryGetter: Getter<LineaServiciosRepository>, @repository.getter('ServiciosRepository') protected serviciosRepositoryGetter: Getter<ServiciosRepository>,
   ) {
     super(PedidoServicio, dataSource);
     this.servicios = this.createHasManyThroughRepositoryFactoryFor('servicios', serviciosRepositoryGetter, lineaServiciosRepositoryGetter,);

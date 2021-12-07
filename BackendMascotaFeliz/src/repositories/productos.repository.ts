@@ -1,11 +1,9 @@
 import {inject, Getter} from '@loopback/core';
-import {DefaultCrudRepository, repository, BelongsToAccessor, HasManyThroughRepositoryFactory} from '@loopback/repository';
-import {MongodbDataSource} from '../datasources';
-import {Productos, ProductosRelations, Sucursal, Proveedor, PedidoProducto, LineaProductos} from '../models';
-import {SucursalRepository} from './sucursal.repository';
+import {DefaultCrudRepository, repository, BelongsToAccessor} from '@loopback/repository';
+import {MongoDbDataSource} from '../datasources';
+import {Productos, ProductosRelations, Proveedor, Sucursal} from '../models';
 import {ProveedorRepository} from './proveedor.repository';
-import {LineaProductosRepository} from './linea-productos.repository';
-import {PedidoProductoRepository} from './pedido-producto.repository';
+import {SucursalRepository} from './sucursal.repository';
 
 export class ProductosRepository extends DefaultCrudRepository<
   Productos,
@@ -13,24 +11,17 @@ export class ProductosRepository extends DefaultCrudRepository<
   ProductosRelations
 > {
 
-  public readonly sucursal: BelongsToAccessor<Sucursal, typeof Productos.prototype.id>;
-
   public readonly proveedor: BelongsToAccessor<Proveedor, typeof Productos.prototype.id>;
 
-  public readonly pedidoProductos: HasManyThroughRepositoryFactory<PedidoProducto, typeof PedidoProducto.prototype.id,
-          LineaProductos,
-          typeof Productos.prototype.id
-        >;
+  public readonly sucursal: BelongsToAccessor<Sucursal, typeof Productos.prototype.id>;
 
   constructor(
-    @inject('datasources.mongodb') dataSource: MongodbDataSource, @repository.getter('SucursalRepository') protected sucursalRepositoryGetter: Getter<SucursalRepository>, @repository.getter('ProveedorRepository') protected proveedorRepositoryGetter: Getter<ProveedorRepository>, @repository.getter('LineaProductosRepository') protected lineaProductosRepositoryGetter: Getter<LineaProductosRepository>, @repository.getter('PedidoProductoRepository') protected pedidoProductoRepositoryGetter: Getter<PedidoProductoRepository>,
+    @inject('datasources.MongoDB') dataSource: MongoDbDataSource, @repository.getter('ProveedorRepository') protected proveedorRepositoryGetter: Getter<ProveedorRepository>, @repository.getter('SucursalRepository') protected sucursalRepositoryGetter: Getter<SucursalRepository>,
   ) {
     super(Productos, dataSource);
-    this.pedidoProductos = this.createHasManyThroughRepositoryFactoryFor('pedidoProductos', pedidoProductoRepositoryGetter, lineaProductosRepositoryGetter,);
-    this.registerInclusionResolver('pedidoProductos', this.pedidoProductos.inclusionResolver);
-    this.proveedor = this.createBelongsToAccessorFor('proveedor', proveedorRepositoryGetter,);
-    this.registerInclusionResolver('proveedor', this.proveedor.inclusionResolver);
     this.sucursal = this.createBelongsToAccessorFor('sucursal', sucursalRepositoryGetter,);
     this.registerInclusionResolver('sucursal', this.sucursal.inclusionResolver);
+    this.proveedor = this.createBelongsToAccessorFor('proveedor', proveedorRepositoryGetter,);
+    this.registerInclusionResolver('proveedor', this.proveedor.inclusionResolver);
   }
 }
