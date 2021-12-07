@@ -1,4 +1,10 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany} from '@loopback/repository';
+import {PedidoPlan} from './pedido-plan.model';
+import {PedidoProductos} from './pedido-productos.model';
+import {PedidoServicio} from './pedido-servicio.model';
+import {Mascota} from './mascota.model';
+import {Contrato} from './contrato.model';
+import {SolicitudAfiliacion} from './solicitud-afiliacion.model';
 
 @model()
 export class Propietario extends Entity {
@@ -50,6 +56,23 @@ export class Propietario extends Entity {
   })
   clave?: string;
 
+  @hasMany(() => PedidoPlan)
+  pedidoPlans: PedidoPlan[];
+
+  @hasMany(() => PedidoProductos)
+  pedidoProductos: PedidoProductos[];
+
+  @hasMany(() => PedidoServicio)
+  pedidoServicios: PedidoServicio[];
+
+  @hasMany(() => Mascota)
+  mascotas: Mascota[];
+
+  @hasMany(() => Contrato)
+  contratoes: Contrato[];
+
+  @hasMany(() => SolicitudAfiliacion)
+  solicitudAfiliacions: SolicitudAfiliacion[];
 
   constructor(data?: Partial<Propietario>) {
     super(data);

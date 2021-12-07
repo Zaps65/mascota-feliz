@@ -27,6 +27,15 @@ export class LineaPlanes extends Entity {
   })
   fecha_fin: string;
 
+  @property({
+    type: 'string',
+  })
+  pedidoPlanId?: string;
+
+  @property({
+    type: 'string',
+  })
+  planesId?: string;
 
   constructor(data?: Partial<LineaPlanes>) {
     super(data);

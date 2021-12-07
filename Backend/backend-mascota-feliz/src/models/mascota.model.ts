@@ -1,4 +1,9 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany, belongsTo, hasOne} from '@loopback/repository';
+import {PedidoPlan} from './pedido-plan.model';
+import {Propietario} from './propietario.model';
+import {Contrato} from './contrato.model';
+import {HistorialVisitaDomiciliaria} from './historial-visita-domiciliaria.model';
+import {HistoriaClinica} from './historia-clinica.model';
 
 @model()
 export class Mascota extends Entity {
@@ -56,6 +61,25 @@ export class Mascota extends Entity {
   })
   afiliado: boolean;
 
+  @hasMany(() => PedidoPlan)
+  pedidoPlans: PedidoPlan[];
+
+  @belongsTo(() => Propietario)
+  propietarioId: string;
+
+  @hasOne(() => Contrato)
+  contrato: Contrato;
+
+  @hasMany(() => HistorialVisitaDomiciliaria)
+  historialVisitaDomiciliarias: HistorialVisitaDomiciliaria[];
+
+  @hasMany(() => HistoriaClinica)
+  historiaClinicas: HistoriaClinica[];
+
+  @property({
+    type: 'string',
+  })
+  solicitudAfiliacionId?: string;
 
   constructor(data?: Partial<Mascota>) {
     super(data);

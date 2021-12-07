@@ -15,6 +15,15 @@ export class LineaServicios extends Entity {
   })
   cantidad?: number;
 
+  @property({
+    type: 'string',
+  })
+  pedidoServicioId?: string;
+
+  @property({
+    type: 'string',
+  })
+  serviciosId?: string;
 
   constructor(data?: Partial<LineaServicios>) {
     super(data);

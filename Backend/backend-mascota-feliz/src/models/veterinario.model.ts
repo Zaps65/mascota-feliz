@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany} from '@loopback/repository';
+import {HistoriaClinica} from './historia-clinica.model';
 
 @model()
 export class Veterinario extends Entity {
@@ -51,6 +52,8 @@ export class Veterinario extends Entity {
   })
   clinica: string;
 
+  @hasMany(() => HistoriaClinica)
+  historiaClinicas: HistoriaClinica[];
 
   constructor(data?: Partial<Veterinario>) {
     super(data);
