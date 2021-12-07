@@ -18,7 +18,7 @@ export class ContratoSolicitudAfiliacionController {
     public contratoRepository: ContratoRepository,
   ) { }
 
-  @get('/contratoes/{id}/solicitud-afiliacion', {
+  @get('/contratos/{id}/solicitud-afiliacion', {
     responses: {
       '200': {
         description: 'SolicitudAfiliacion belonging to Contrato',

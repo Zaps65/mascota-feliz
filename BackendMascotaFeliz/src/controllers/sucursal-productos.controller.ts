@@ -26,7 +26,7 @@ export class SucursalProductosController {
     @repository(SucursalRepository) protected sucursalRepository: SucursalRepository,
   ) { }
 
-  @get('/sucursals/{id}/productos', {
+  @get('/sucursales/{id}/productos', {
     responses: {
       '200': {
         description: 'Array of Sucursal has many Productos',
@@ -45,7 +45,7 @@ export class SucursalProductosController {
     return this.sucursalRepository.productos(id).find(filter);
   }
 
-  @post('/sucursals/{id}/productos', {
+  @post('/sucursales/{id}/productos', {
     responses: {
       '200': {
         description: 'Sucursal model instance',
@@ -70,7 +70,7 @@ export class SucursalProductosController {
     return this.sucursalRepository.productos(id).create(productos);
   }
 
-  @patch('/sucursals/{id}/productos', {
+  @patch('/sucursales/{id}/productos', {
     responses: {
       '200': {
         description: 'Sucursal.Productos PATCH success count',
@@ -93,7 +93,7 @@ export class SucursalProductosController {
     return this.sucursalRepository.productos(id).patch(productos, where);
   }
 
-  @del('/sucursals/{id}/productos', {
+  @del('/sucursales/{id}/productos', {
     responses: {
       '200': {
         description: 'Sucursal.Productos DELETE success count',

@@ -26,7 +26,7 @@ export class PropietarioPedidoPlanController {
     @repository(PropietarioRepository) protected propietarioRepository: PropietarioRepository,
   ) { }
 
-  @get('/propietarios/{id}/pedido-plans', {
+  @get('/propietarios/{id}/pedido-planes', {
     responses: {
       '200': {
         description: 'Array of Propietario has many PedidoPlan',
@@ -45,7 +45,7 @@ export class PropietarioPedidoPlanController {
     return this.propietarioRepository.pedidoPlans(id).find(filter);
   }
 
-  @post('/propietarios/{id}/pedido-plans', {
+  @post('/propietarios/{id}/pedido-planes', {
     responses: {
       '200': {
         description: 'Propietario model instance',
@@ -70,7 +70,7 @@ export class PropietarioPedidoPlanController {
     return this.propietarioRepository.pedidoPlans(id).create(pedidoPlan);
   }
 
-  @patch('/propietarios/{id}/pedido-plans', {
+  @patch('/propietarios/{id}/pedido-planes', {
     responses: {
       '200': {
         description: 'Propietario.PedidoPlan PATCH success count',
@@ -93,7 +93,7 @@ export class PropietarioPedidoPlanController {
     return this.propietarioRepository.pedidoPlans(id).patch(pedidoPlan, where);
   }
 
-  @del('/propietarios/{id}/pedido-plans', {
+  @del('/propietarios/{id}/pedido-planes', {
     responses: {
       '200': {
         description: 'Propietario.PedidoPlan DELETE success count',

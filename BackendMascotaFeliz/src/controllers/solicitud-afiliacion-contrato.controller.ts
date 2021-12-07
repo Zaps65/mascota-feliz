@@ -26,7 +26,7 @@ export class SolicitudAfiliacionContratoController {
     @repository(SolicitudAfiliacionRepository) protected solicitudAfiliacionRepository: SolicitudAfiliacionRepository,
   ) { }
 
-  @get('/solicitud-afiliacions/{id}/contrato', {
+  @get('/solicitud-afiliaciones/{id}/contrato', {
     responses: {
       '200': {
         description: 'SolicitudAfiliacion has one Contrato',
@@ -45,7 +45,7 @@ export class SolicitudAfiliacionContratoController {
     return this.solicitudAfiliacionRepository.contrato(id).get(filter);
   }
 
-  @post('/solicitud-afiliacions/{id}/contrato', {
+  @post('/solicitud-afiliaciones/{id}/contrato', {
     responses: {
       '200': {
         description: 'SolicitudAfiliacion model instance',
@@ -70,7 +70,7 @@ export class SolicitudAfiliacionContratoController {
     return this.solicitudAfiliacionRepository.contrato(id).create(contrato);
   }
 
-  @patch('/solicitud-afiliacions/{id}/contrato', {
+  @patch('/solicitud-afiliaciones/{id}/contrato', {
     responses: {
       '200': {
         description: 'SolicitudAfiliacion.Contrato PATCH success count',
@@ -93,7 +93,7 @@ export class SolicitudAfiliacionContratoController {
     return this.solicitudAfiliacionRepository.contrato(id).patch(contrato, where);
   }
 
-  @del('/solicitud-afiliacions/{id}/contrato', {
+  @del('/solicitud-afiliaciones/{id}/contrato', {
     responses: {
       '200': {
         description: 'SolicitudAfiliacion.Contrato DELETE success count',

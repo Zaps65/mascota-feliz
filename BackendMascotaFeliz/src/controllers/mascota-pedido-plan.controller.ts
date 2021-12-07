@@ -26,7 +26,7 @@ export class MascotaPedidoPlanController {
     @repository(MascotaRepository) protected mascotaRepository: MascotaRepository,
   ) { }
 
-  @get('/mascotas/{id}/pedido-plans', {
+  @get('/mascotas/{id}/pedido-planes', {
     responses: {
       '200': {
         description: 'Array of Mascota has many PedidoPlan',
@@ -45,7 +45,7 @@ export class MascotaPedidoPlanController {
     return this.mascotaRepository.pedidoPlans(id).find(filter);
   }
 
-  @post('/mascotas/{id}/pedido-plans', {
+  @post('/mascotas/{id}/pedido-planes', {
     responses: {
       '200': {
         description: 'Mascota model instance',
@@ -70,7 +70,7 @@ export class MascotaPedidoPlanController {
     return this.mascotaRepository.pedidoPlans(id).create(pedidoPlan);
   }
 
-  @patch('/mascotas/{id}/pedido-plans', {
+  @patch('/mascotas/{id}/pedido-planes', {
     responses: {
       '200': {
         description: 'Mascota.PedidoPlan PATCH success count',
@@ -93,7 +93,7 @@ export class MascotaPedidoPlanController {
     return this.mascotaRepository.pedidoPlans(id).patch(pedidoPlan, where);
   }
 
-  @del('/mascotas/{id}/pedido-plans', {
+  @del('/mascotas/{id}/pedido-planes', {
     responses: {
       '200': {
         description: 'Mascota.PedidoPlan DELETE success count',

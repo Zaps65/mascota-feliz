@@ -18,7 +18,7 @@ export class ContratoMascotaController {
     public contratoRepository: ContratoRepository,
   ) { }
 
-  @get('/contratoes/{id}/mascota', {
+  @get('/contratos/{id}/mascota', {
     responses: {
       '200': {
         description: 'Mascota belonging to Contrato',

@@ -26,7 +26,7 @@ export class AsesorSolicitudAfiliacionController {
     @repository(AsesorRepository) protected asesorRepository: AsesorRepository,
   ) { }
 
-  @get('/asesors/{id}/solicitud-afiliacions', {
+  @get('/asesores/{id}/solicitud-afiliaciones', {
     responses: {
       '200': {
         description: 'Array of Asesor has many SolicitudAfiliacion',
@@ -45,7 +45,7 @@ export class AsesorSolicitudAfiliacionController {
     return this.asesorRepository.solicitudAfiliacions(id).find(filter);
   }
 
-  @post('/asesors/{id}/solicitud-afiliacions', {
+  @post('/asesores/{id}/solicitud-afiliaciones', {
     responses: {
       '200': {
         description: 'Asesor model instance',
@@ -70,7 +70,7 @@ export class AsesorSolicitudAfiliacionController {
     return this.asesorRepository.solicitudAfiliacions(id).create(solicitudAfiliacion);
   }
 
-  @patch('/asesors/{id}/solicitud-afiliacions', {
+  @patch('/asesores/{id}/solicitud-afiliaciones', {
     responses: {
       '200': {
         description: 'Asesor.SolicitudAfiliacion PATCH success count',
@@ -93,7 +93,7 @@ export class AsesorSolicitudAfiliacionController {
     return this.asesorRepository.solicitudAfiliacions(id).patch(solicitudAfiliacion, where);
   }
 
-  @del('/asesors/{id}/solicitud-afiliacions', {
+  @del('/asesores/{id}/solicitud-afiliaciones', {
     responses: {
       '200': {
         description: 'Asesor.SolicitudAfiliacion DELETE success count',

@@ -26,7 +26,7 @@ export class SolicitudAfiliacionMascotaController {
     @repository(SolicitudAfiliacionRepository) protected solicitudAfiliacionRepository: SolicitudAfiliacionRepository,
   ) { }
 
-  @get('/solicitud-afiliacions/{id}/mascota', {
+  @get('/solicitud-afiliaciones/{id}/mascota', {
     responses: {
       '200': {
         description: 'SolicitudAfiliacion has one Mascota',
@@ -45,7 +45,7 @@ export class SolicitudAfiliacionMascotaController {
     return this.solicitudAfiliacionRepository.mascota(id).get(filter);
   }
 
-  @post('/solicitud-afiliacions/{id}/mascota', {
+  @post('/solicitud-afiliaciones/{id}/mascota', {
     responses: {
       '200': {
         description: 'SolicitudAfiliacion model instance',
@@ -70,7 +70,7 @@ export class SolicitudAfiliacionMascotaController {
     return this.solicitudAfiliacionRepository.mascota(id).create(mascota);
   }
 
-  @patch('/solicitud-afiliacions/{id}/mascota', {
+  @patch('/solicitud-afiliaciones/{id}/mascota', {
     responses: {
       '200': {
         description: 'SolicitudAfiliacion.Mascota PATCH success count',
@@ -93,7 +93,7 @@ export class SolicitudAfiliacionMascotaController {
     return this.solicitudAfiliacionRepository.mascota(id).patch(mascota, where);
   }
 
-  @del('/solicitud-afiliacions/{id}/mascota', {
+  @del('/solicitud-afiliaciones/{id}/mascota', {
     responses: {
       '200': {
         description: 'SolicitudAfiliacion.Mascota DELETE success count',

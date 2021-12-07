@@ -26,7 +26,7 @@ export class ProveedorProductosController {
     @repository(ProveedorRepository) protected proveedorRepository: ProveedorRepository,
   ) { }
 
-  @get('/proveedors/{id}/productos', {
+  @get('/proveedores/{id}/productos', {
     responses: {
       '200': {
         description: 'Array of Proveedor has many Productos',
@@ -45,7 +45,7 @@ export class ProveedorProductosController {
     return this.proveedorRepository.productos(id).find(filter);
   }
 
-  @post('/proveedors/{id}/productos', {
+  @post('/proveedores/{id}/productos', {
     responses: {
       '200': {
         description: 'Proveedor model instance',
@@ -70,7 +70,7 @@ export class ProveedorProductosController {
     return this.proveedorRepository.productos(id).create(productos);
   }
 
-  @patch('/proveedors/{id}/productos', {
+  @patch('/proveedores/{id}/productos', {
     responses: {
       '200': {
         description: 'Proveedor.Productos PATCH success count',
@@ -93,7 +93,7 @@ export class ProveedorProductosController {
     return this.proveedorRepository.productos(id).patch(productos, where);
   }
 
-  @del('/proveedors/{id}/productos', {
+  @del('/proveedores/{id}/productos', {
     responses: {
       '200': {
         description: 'Proveedor.Productos DELETE success count',

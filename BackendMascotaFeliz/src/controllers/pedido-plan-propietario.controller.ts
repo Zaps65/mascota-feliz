@@ -18,7 +18,7 @@ export class PedidoPlanPropietarioController {
     public pedidoPlanRepository: PedidoPlanRepository,
   ) { }
 
-  @get('/pedido-plans/{id}/propietario', {
+  @get('/pedido-planes/{id}/propietario', {
     responses: {
       '200': {
         description: 'Propietario belonging to PedidoPlan',

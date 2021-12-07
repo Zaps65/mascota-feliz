@@ -18,7 +18,7 @@ export class ContratoPropietarioController {
     public contratoRepository: ContratoRepository,
   ) { }
 
-  @get('/contratoes/{id}/propietario', {
+  @get('/contratos/{id}/propietario', {
     responses: {
       '200': {
         description: 'Propietario belonging to Contrato',

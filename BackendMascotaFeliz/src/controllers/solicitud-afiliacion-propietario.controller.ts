@@ -18,7 +18,7 @@ export class SolicitudAfiliacionPropietarioController {
     public solicitudAfiliacionRepository: SolicitudAfiliacionRepository,
   ) { }
 
-  @get('/solicitud-afiliacions/{id}/propietario', {
+  @get('/solicitud-afiliaciones/{id}/propietario', {
     responses: {
       '200': {
         description: 'Propietario belonging to SolicitudAfiliacion',

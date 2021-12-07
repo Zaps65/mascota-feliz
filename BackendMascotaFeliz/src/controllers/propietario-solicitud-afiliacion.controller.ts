@@ -26,7 +26,7 @@ export class PropietarioSolicitudAfiliacionController {
     @repository(PropietarioRepository) protected propietarioRepository: PropietarioRepository,
   ) { }
 
-  @get('/propietarios/{id}/solicitud-afiliacions', {
+  @get('/propietarios/{id}/solicitud-afiliaciones', {
     responses: {
       '200': {
         description: 'Array of Propietario has many SolicitudAfiliacion',
@@ -45,7 +45,7 @@ export class PropietarioSolicitudAfiliacionController {
     return this.propietarioRepository.solicitudAfiliacions(id).find(filter);
   }
 
-  @post('/propietarios/{id}/solicitud-afiliacions', {
+  @post('/propietarios/{id}/solicitud-afiliaciones', {
     responses: {
       '200': {
         description: 'Propietario model instance',
@@ -70,7 +70,7 @@ export class PropietarioSolicitudAfiliacionController {
     return this.propietarioRepository.solicitudAfiliacions(id).create(solicitudAfiliacion);
   }
 
-  @patch('/propietarios/{id}/solicitud-afiliacions', {
+  @patch('/propietarios/{id}/solicitud-afiliaciones', {
     responses: {
       '200': {
         description: 'Propietario.SolicitudAfiliacion PATCH success count',
@@ -93,7 +93,7 @@ export class PropietarioSolicitudAfiliacionController {
     return this.propietarioRepository.solicitudAfiliacions(id).patch(solicitudAfiliacion, where);
   }
 
-  @del('/propietarios/{id}/solicitud-afiliacions', {
+  @del('/propietarios/{id}/solicitud-afiliaciones', {
     responses: {
       '200': {
         description: 'Propietario.SolicitudAfiliacion DELETE success count',

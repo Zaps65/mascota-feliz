@@ -18,7 +18,7 @@ export class PedidoPlanMascotaController {
     public pedidoPlanRepository: PedidoPlanRepository,
   ) { }
 
-  @get('/pedido-plans/{id}/mascota', {
+  @get('/pedido-planes/{id}/mascota', {
     responses: {
       '200': {
         description: 'Mascota belonging to PedidoPlan',

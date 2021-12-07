@@ -18,7 +18,7 @@ export class SolicitudAfiliacionAsesorController {
     public solicitudAfiliacionRepository: SolicitudAfiliacionRepository,
   ) { }
 
-  @get('/solicitud-afiliacions/{id}/asesor', {
+  @get('/solicitud-afiliaciones/{id}/asesor', {
     responses: {
       '200': {
         description: 'Asesor belonging to SolicitudAfiliacion',

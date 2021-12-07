@@ -26,7 +26,7 @@ export class PropietarioContratoController {
     @repository(PropietarioRepository) protected propietarioRepository: PropietarioRepository,
   ) { }
 
-  @get('/propietarios/{id}/contratoes', {
+  @get('/propietarios/{id}/contratos', {
     responses: {
       '200': {
         description: 'Array of Propietario has many Contrato',
@@ -45,7 +45,7 @@ export class PropietarioContratoController {
     return this.propietarioRepository.contratoes(id).find(filter);
   }
 
-  @post('/propietarios/{id}/contratoes', {
+  @post('/propietarios/{id}/contratos', {
     responses: {
       '200': {
         description: 'Propietario model instance',
@@ -70,7 +70,7 @@ export class PropietarioContratoController {
     return this.propietarioRepository.contratoes(id).create(contrato);
   }
 
-  @patch('/propietarios/{id}/contratoes', {
+  @patch('/propietarios/{id}/contratos', {
     responses: {
       '200': {
         description: 'Propietario.Contrato PATCH success count',
@@ -93,7 +93,7 @@ export class PropietarioContratoController {
     return this.propietarioRepository.contratoes(id).patch(contrato, where);
   }
 
-  @del('/propietarios/{id}/contratoes', {
+  @del('/propietarios/{id}/contratos', {
     responses: {
       '200': {
         description: 'Propietario.Contrato DELETE success count',

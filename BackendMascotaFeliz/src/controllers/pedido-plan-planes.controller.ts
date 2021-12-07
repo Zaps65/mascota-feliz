@@ -27,7 +27,7 @@ export class PedidoPlanPlanesController {
     @repository(PedidoPlanRepository) protected pedidoPlanRepository: PedidoPlanRepository,
   ) { }
 
-  @get('/pedido-plans/{id}/planes', {
+  @get('/pedido-planes/{id}/planes', {
     responses: {
       '200': {
         description: 'Array of PedidoPlan has many Planes through LineaPlanes',
@@ -46,7 +46,7 @@ export class PedidoPlanPlanesController {
     return this.pedidoPlanRepository.planes(id).find(filter);
   }
 
-  @post('/pedido-plans/{id}/planes', {
+  @post('/pedido-planes/{id}/planes', {
     responses: {
       '200': {
         description: 'create a Planes model instance',
@@ -70,7 +70,7 @@ export class PedidoPlanPlanesController {
     return this.pedidoPlanRepository.planes(id).create(planes);
   }
 
-  @patch('/pedido-plans/{id}/planes', {
+  @patch('/pedido-planes/{id}/planes', {
     responses: {
       '200': {
         description: 'PedidoPlan.Planes PATCH success count',
@@ -93,7 +93,7 @@ export class PedidoPlanPlanesController {
     return this.pedidoPlanRepository.planes(id).patch(planes, where);
   }
 
-  @del('/pedido-plans/{id}/planes', {
+  @del('/pedido-planes/{id}/planes', {
     responses: {
       '200': {
         description: 'PedidoPlan.Planes DELETE success count',
