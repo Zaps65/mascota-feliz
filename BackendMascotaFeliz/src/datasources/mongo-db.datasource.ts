@@ -1,11 +1,11 @@
 import {inject, lifeCycleObserver, LifeCycleObserver} from '@loopback/core';
 import {juggler} from '@loopback/repository';
-import {PasswordDB} from  './passwordDB';
+import {Llaves} from  '../config/llaves';
 
 const config = {
   name: 'MongoDB',
   connector: 'mongodb',
-  url: `mongodb+srv://Zaps65:${PasswordDB.passwordDB}@mascotafeliz.osbsb.mongodb.net/MascotaFeliz?retryWrites=true&w=majority`,
+  url: `mongodb+srv://Zaps65:${Llaves.passwordDB}@mascotafeliz.osbsb.mongodb.net/MascotaFeliz?retryWrites=true&w=majority`,
   host: '',
   port: 0,
   user: '',

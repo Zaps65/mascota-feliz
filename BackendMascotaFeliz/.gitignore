@@ -64,4 +64,4 @@ typings/
 *.tsbuildinfo
 
 #DataBase Password
-src/datasources/passwordDB.ts
+src/config

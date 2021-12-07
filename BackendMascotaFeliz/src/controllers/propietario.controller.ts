@@ -1,3 +1,4 @@
+import {service} from '@loopback/core';
 import {
   Count,
   CountSchema,
@@ -16,15 +17,48 @@ import {
   del,
   requestBody,
   response,
+  HttpErrors,
 } from '@loopback/rest';
-import {Propietario} from '../models';
+import {Llaves} from '../config/llaves';
+import {Credenciales, Propietario} from '../models';
 import {PropietarioRepository} from '../repositories';
+import {AutenticacionService} from '../services';
+const fetch = require('node-fetch');
 
 export class PropietarioController {
   constructor(
     @repository(PropietarioRepository)
     public propietarioRepository : PropietarioRepository,
+    @service(AutenticacionService)
+    public autenticacionService: AutenticacionService,
   ) {}
+
+  @post('/login', {
+    responses: {
+      '200': {
+        description: 'Identificación de usuario',
+      }
+    }
+  })
+  async login(
+    @requestBody() credenciales: Credenciales
+  ){
+    let p = await this.autenticacionService.identificarPersona(credenciales.username, credenciales.clave);
+    if (p) {
+      let token = this.autenticacionService.generarTokenJWT(p);
+      return {
+        datos:{
+          nombre: p.nombre,
+          apellido: p.apellido,
+          correo: p.correo,
+          id: p.id
+        },
+        tk: token
+      }
+    }else{
+      throw new HttpErrors[401](`Usuario o clave incorrectos`);
+    }
+  }
 
   @post('/propietario')
   @response(200, {
@@ -44,7 +78,21 @@ export class PropietarioController {
     })
     propietario: Omit<Propietario, 'id'>,
   ): Promise<Propietario> {
-    return this.propietarioRepository.create(propietario);
+      let clave = this.autenticacionService.generarClave();
+      let claveCifrada = this.autenticacionService.cifrarClave(clave);
+      propietario.clave = claveCifrada;
+      let p = await this.propietarioRepository.create(propietario);
+
+      // Notification
+      let to = propietario.correo;
+      let subject = 'Registro de usuario';
+let body = `Hola ${propietario.nombre} ${propietario.apellido}, bienvenido a Mascota Feliz. Su nombre de usuario es: ${propietario.correo} Su clave es: ${clave} Gracias por registrarse.`;
+      fetch(`${Llaves.urlServiciosNotificaciones}/send_email/?to=${to}&subject=${subject}&body=${body}`)
+        .then((data: any) => {
+          console.log(data);
+        });
+
+      return p;return propietario;
   }
 
   @get('/propietario/count')

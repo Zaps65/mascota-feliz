@@ -18,3 +18,4 @@ export * from './solicitud-afiliacion.model';
 export * from './asesor.model';
 export * from './empleado.model';
 export * from './veterinario.model';
+export * from './credenciales.model';
