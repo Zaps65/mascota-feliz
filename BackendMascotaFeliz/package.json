@@ -49,6 +49,7 @@
     "!*/__tests__"
   ],
   "dependencies": {
+    "@loopback/authentication": "^8.0.0",
     "@loopback/boot": "^4.0.0",
     "@loopback/core": "^3.0.0",
     "@loopback/repository": "^4.0.0",
@@ -59,6 +60,7 @@
     "jsonwebtoken": "^8.5.1",
     "loopback-connector-mongodb": "^5.6.0",
     "node-fetch": "^2.6.1",
+    "parse-bearer-token": "^1.0.1",
     "password-generator": "^2.3.2",
     "tslib": "^2.0.0"
   },
