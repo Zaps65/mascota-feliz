@@ -1,7 +1,7 @@
 import {injectable, /* inject, */ BindingScope} from '@loopback/core';
 import {repository} from '@loopback/repository';
 import {Propietario} from '../models';
-import {PropietarioRepository} from '../repositories';
+import {AsesorRepository, EmpleadoRepository, PropietarioRepository} from '../repositories';
 import {Llaves} from '../config/llaves'
 const generador = require('password-generator');
 const cryptoJS = require('crypto-js');
@@ -12,6 +12,10 @@ export class AutenticacionService {
   constructor(
     @repository(PropietarioRepository)
     public propietarioRepository: PropietarioRepository,
+    @repository(AsesorRepository)
+    public asesorRepository: AsesorRepository,
+    @repository(EmpleadoRepository)
+    public empleadoRepository: EmpleadoRepository,
   ) {}
 
   /*
@@ -28,9 +32,35 @@ export class AutenticacionService {
     return claveCifrada;
   }
 
-  identificarPersona(usuario: string, clave: string){
+  identificarPropietario(usuario: string, clave: string){
     try{
       let p = this.propietarioRepository.findOne({where: {correo: usuario, clave:clave}});
+      if(p){
+        return p;
+      }
+      return false;
+
+    }catch(error){
+      console.log(error);
+    }
+  }
+
+  identificarAsesor(usuario: string, clave: string){
+    try{
+      let p = this.asesorRepository.findOne({where: {correo: usuario, clave:clave}});
+      if(p){
+        return p;
+      }
+      return false;
+
+    }catch(error){
+      console.log(error);
+    }
+  }
+
+  identificarAuxiliar(usuario: string, clave: string){
+    try{
+      let p = this.empleadoRepository.findOne({where: {correo: usuario, clave:clave}});
       if(p){
         return p;
       }
