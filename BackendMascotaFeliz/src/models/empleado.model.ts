@@ -72,6 +72,11 @@ export class Empleado extends Entity {
 
   @property({
     type: 'string',
+  })
+  clave?: string;
+
+  @property({
+    type: 'string',
     default: 'auxiliar',
   })
   rol?: string;

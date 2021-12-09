@@ -43,7 +43,7 @@ export class PropietarioController {
   async login(
     @requestBody() credenciales: Credenciales
   ){
-    let p = await this.autenticacionService.identificarPersona(credenciales.username, credenciales.clave);
+    let p = await this.autenticacionService.identificarPropietario(credenciales.username, credenciales.clave);
     if (p) {
       let token = this.autenticacionService.generarTokenJWT(p);
       return {
