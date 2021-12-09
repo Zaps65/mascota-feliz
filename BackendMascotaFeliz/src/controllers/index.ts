@@ -55,3 +55,7 @@ export * from './servicios.controller';
 export * from './solicitud-afiliacion.controller';
 export * from './sucursal.controller';
 export * from './veterinario.controller';
+export * from './credenciales-rol.controller';
+export * from './pedido-plan-empleado.controller';
+export * from './pedido-productos-empleado.controller';
+export * from './pedido-servicio-empleado.controller';

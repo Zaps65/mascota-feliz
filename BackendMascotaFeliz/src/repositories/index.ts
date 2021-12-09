@@ -18,3 +18,5 @@ export * from './servicios.repository';
 export * from './solicitud-afiliacion.repository';
 export * from './sucursal.repository';
 export * from './veterinario.repository';
+export * from './credenciales.repository';
+export * from './rol.repository';

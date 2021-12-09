@@ -19,3 +19,4 @@ export * from './asesor.model';
 export * from './empleado.model';
 export * from './veterinario.model';
 export * from './credenciales.model';
+export * from './rol.model';

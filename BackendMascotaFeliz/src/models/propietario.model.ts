@@ -56,6 +56,12 @@ export class Propietario extends Entity {
   })
   clave?: string;
 
+  @property({
+    type: 'string',
+    default: 'user',
+  })
+  rol?: string;
+
   @hasMany(() => PedidoPlan)
   pedidoPlans: PedidoPlan[];
 

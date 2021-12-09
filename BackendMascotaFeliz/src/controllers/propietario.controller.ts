@@ -86,7 +86,7 @@ export class PropietarioController {
       // Notification
       let to = propietario.correo;
       let subject = 'Registro de usuario';
-let body = `Hola ${propietario.nombre} ${propietario.apellido}, bienvenido a Mascota Feliz. Su nombre de usuario es: ${propietario.correo} Su clave es: ${clave} Gracias por registrarse.`;
+      let body = `Hola ${propietario.nombre} ${propietario.apellido}, bienvenido a Mascota Feliz. Su nombre de usuario es: ${propietario.correo} Su clave es: ${clave} Gracias por registrarse.`;
       fetch(`${Llaves.urlServiciosNotificaciones}/send_email/?to=${to}&subject=${subject}&body=${body}`)
         .then((data: any) => {
           console.log(data);

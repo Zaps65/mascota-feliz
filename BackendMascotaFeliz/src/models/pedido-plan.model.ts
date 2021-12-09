@@ -3,6 +3,7 @@ import {Propietario} from './propietario.model';
 import {Mascota} from './mascota.model';
 import {Planes} from './planes.model';
 import {LineaPlanes} from './linea-planes.model';
+import {Empleado} from './empleado.model';
 
 @model()
 export class PedidoPlan extends Entity {
@@ -44,6 +45,9 @@ export class PedidoPlan extends Entity {
 
   @hasMany(() => Planes, {through: {model: () => LineaPlanes}})
   planes: Planes[];
+
+  @belongsTo(() => Empleado)
+  empleadoId: string;
 
   constructor(data?: Partial<PedidoPlan>) {
     super(data);

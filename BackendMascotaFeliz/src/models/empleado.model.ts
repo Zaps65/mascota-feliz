@@ -70,6 +70,12 @@ export class Empleado extends Entity {
   })
   fecha_ingreso: string;
 
+  @property({
+    type: 'string',
+    default: 'auxiliar',
+  })
+  rol?: string;
+
   @hasMany(() => HistorialVisitaDomiciliaria)
   historialVisitaDomiciliarias: HistorialVisitaDomiciliaria[];
 
