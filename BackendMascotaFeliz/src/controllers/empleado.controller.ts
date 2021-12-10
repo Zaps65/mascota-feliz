@@ -28,7 +28,7 @@ export class EmpleadoController {
 
   @post('/empleado')
   @response(200, {
-    description: 'Empleado model instance',
+    description: 'Se ha creado un nuevo empleado',
     content: {'application/json': {schema: getModelSchemaRef(Empleado)}},
   })
   async create(
@@ -49,7 +49,7 @@ export class EmpleadoController {
 
   @get('/empleado/count')
   @response(200, {
-    description: 'Empleado model count',
+    description: 'Total de empleados',
     content: {'application/json': {schema: CountSchema}},
   })
   async count(
@@ -60,7 +60,7 @@ export class EmpleadoController {
 
   @get('/empleado')
   @response(200, {
-    description: 'Array of Empleado model instances',
+    description: 'Lista de empleados',
     content: {
       'application/json': {
         schema: {
@@ -76,28 +76,9 @@ export class EmpleadoController {
     return this.empleadoRepository.find(filter);
   }
 
-  @patch('/empleado')
-  @response(200, {
-    description: 'Empleado PATCH success count',
-    content: {'application/json': {schema: CountSchema}},
-  })
-  async updateAll(
-    @requestBody({
-      content: {
-        'application/json': {
-          schema: getModelSchemaRef(Empleado, {partial: true}),
-        },
-      },
-    })
-    empleado: Empleado,
-    @param.where(Empleado) where?: Where<Empleado>,
-  ): Promise<Count> {
-    return this.empleadoRepository.updateAll(empleado, where);
-  }
-
   @get('/empleado/{id}')
   @response(200, {
-    description: 'Empleado model instance',
+    description: 'Información de un empleado',
     content: {
       'application/json': {
         schema: getModelSchemaRef(Empleado, {includeRelations: true}),
@@ -113,7 +94,7 @@ export class EmpleadoController {
 
   @patch('/empleado/{id}')
   @response(204, {
-    description: 'Empleado PATCH success',
+    description: 'Se ha actualizado el empleado satisfactoriamente',
   })
   async updateById(
     @param.path.string('id') id: string,
@@ -131,7 +112,7 @@ export class EmpleadoController {
 
   @put('/empleado/{id}')
   @response(204, {
-    description: 'Empleado PUT success',
+    description: 'Se ha actualizado el empleado satisfactoriamente',
   })
   async replaceById(
     @param.path.string('id') id: string,
@@ -142,7 +123,7 @@ export class EmpleadoController {
 
   @del('/empleado/{id}')
   @response(204, {
-    description: 'Empleado DELETE success',
+    description: 'Se ha eliminado el empleado satisfactoriamente',
   })
   async deleteById(@param.path.string('id') id: string): Promise<void> {
     await this.empleadoRepository.deleteById(id);

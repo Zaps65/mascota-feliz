@@ -18,10 +18,10 @@ export class PedidoPlanEmpleadoController {
     public pedidoPlanRepository: PedidoPlanRepository,
   ) { }
 
-  @get('/pedido-plans/{id}/empleado', {
+  @get('/pedido-plan/{id}/empleado', {
     responses: {
       '200': {
-        description: 'Empleado belonging to PedidoPlan',
+        description: 'Empleado responsable del pedido del plan',
         content: {
           'application/json': {
             schema: {type: 'array', items: getModelSchemaRef(Empleado)},

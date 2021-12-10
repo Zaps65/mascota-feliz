@@ -1,10 +1,7 @@
 import {
-  Count,
-  CountSchema,
   Filter,
   FilterExcludingWhere,
-  repository,
-  Where,
+  repository
 } from '@loopback/repository';
 import {
   post,
@@ -28,7 +25,7 @@ export class HistorialVisitaDomiciliariaController {
 
   @post('/historial-visita-domiciliaria')
   @response(200, {
-    description: 'HistorialVisitaDomiciliaria model instance',
+    description: 'Se ha creado el historial de visita domiciliaria',
     content: {'application/json': {schema: getModelSchemaRef(HistorialVisitaDomiciliaria)}},
   })
   async create(
@@ -47,20 +44,9 @@ export class HistorialVisitaDomiciliariaController {
     return this.historialVisitaDomiciliariaRepository.create(historialVisitaDomiciliaria);
   }
 
-  @get('/historial-visita-domiciliaria/count')
-  @response(200, {
-    description: 'HistorialVisitaDomiciliaria model count',
-    content: {'application/json': {schema: CountSchema}},
-  })
-  async count(
-    @param.where(HistorialVisitaDomiciliaria) where?: Where<HistorialVisitaDomiciliaria>,
-  ): Promise<Count> {
-    return this.historialVisitaDomiciliariaRepository.count(where);
-  }
-
   @get('/historial-visita-domiciliaria')
   @response(200, {
-    description: 'Array of HistorialVisitaDomiciliaria model instances',
+    description: 'Lista de los historiales de visita domiciliaria',
     content: {
       'application/json': {
         schema: {
@@ -76,28 +62,9 @@ export class HistorialVisitaDomiciliariaController {
     return this.historialVisitaDomiciliariaRepository.find(filter);
   }
 
-  @patch('/historial-visita-domiciliaria')
-  @response(200, {
-    description: 'HistorialVisitaDomiciliaria PATCH success count',
-    content: {'application/json': {schema: CountSchema}},
-  })
-  async updateAll(
-    @requestBody({
-      content: {
-        'application/json': {
-          schema: getModelSchemaRef(HistorialVisitaDomiciliaria, {partial: true}),
-        },
-      },
-    })
-    historialVisitaDomiciliaria: HistorialVisitaDomiciliaria,
-    @param.where(HistorialVisitaDomiciliaria) where?: Where<HistorialVisitaDomiciliaria>,
-  ): Promise<Count> {
-    return this.historialVisitaDomiciliariaRepository.updateAll(historialVisitaDomiciliaria, where);
-  }
-
   @get('/historial-visita-domiciliaria/{id}')
   @response(200, {
-    description: 'HistorialVisitaDomiciliaria model instance',
+    description: 'Información del historial de visita domiciliaria',
     content: {
       'application/json': {
         schema: getModelSchemaRef(HistorialVisitaDomiciliaria, {includeRelations: true}),
@@ -113,7 +80,7 @@ export class HistorialVisitaDomiciliariaController {
 
   @patch('/historial-visita-domiciliaria/{id}')
   @response(204, {
-    description: 'HistorialVisitaDomiciliaria PATCH success',
+    description: 'Historial de visita domiciliaria actualizado',
   })
   async updateById(
     @param.path.string('id') id: string,
@@ -131,7 +98,7 @@ export class HistorialVisitaDomiciliariaController {
 
   @put('/historial-visita-domiciliaria/{id}')
   @response(204, {
-    description: 'HistorialVisitaDomiciliaria PUT success',
+    description: 'Historial de visita domiciliaria actualizado',
   })
   async replaceById(
     @param.path.string('id') id: string,
@@ -142,7 +109,7 @@ export class HistorialVisitaDomiciliariaController {
 
   @del('/historial-visita-domiciliaria/{id}')
   @response(204, {
-    description: 'HistorialVisitaDomiciliaria DELETE success',
+    description: 'Historial de visita domiciliaria eliminado',
   })
   async deleteById(@param.path.string('id') id: string): Promise<void> {
     await this.historialVisitaDomiciliariaRepository.deleteById(id);

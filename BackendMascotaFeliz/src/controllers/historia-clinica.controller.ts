@@ -28,7 +28,7 @@ export class HistoriaClinicaController {
 
   @post('/historia-clinica')
   @response(200, {
-    description: 'HistoriaClinica model instance',
+    description: 'Se ha creado una nueva historia clinica',
     content: {'application/json': {schema: getModelSchemaRef(HistoriaClinica)}},
   })
   async create(
@@ -47,20 +47,9 @@ export class HistoriaClinicaController {
     return this.historiaClinicaRepository.create(historiaClinica);
   }
 
-  @get('/historia-clinica/count')
-  @response(200, {
-    description: 'HistoriaClinica model count',
-    content: {'application/json': {schema: CountSchema}},
-  })
-  async count(
-    @param.where(HistoriaClinica) where?: Where<HistoriaClinica>,
-  ): Promise<Count> {
-    return this.historiaClinicaRepository.count(where);
-  }
-
   @get('/historia-clinica')
   @response(200, {
-    description: 'Array of HistoriaClinica model instances',
+    description: 'Lista de historias clinicas',
     content: {
       'application/json': {
         schema: {
@@ -76,28 +65,9 @@ export class HistoriaClinicaController {
     return this.historiaClinicaRepository.find(filter);
   }
 
-  @patch('/historia-clinica')
-  @response(200, {
-    description: 'HistoriaClinica PATCH success count',
-    content: {'application/json': {schema: CountSchema}},
-  })
-  async updateAll(
-    @requestBody({
-      content: {
-        'application/json': {
-          schema: getModelSchemaRef(HistoriaClinica, {partial: true}),
-        },
-      },
-    })
-    historiaClinica: HistoriaClinica,
-    @param.where(HistoriaClinica) where?: Where<HistoriaClinica>,
-  ): Promise<Count> {
-    return this.historiaClinicaRepository.updateAll(historiaClinica, where);
-  }
-
   @get('/historia-clinica/{id}')
   @response(200, {
-    description: 'HistoriaClinica model instance',
+    description: 'Información de una historia clinica',
     content: {
       'application/json': {
         schema: getModelSchemaRef(HistoriaClinica, {includeRelations: true}),
@@ -113,7 +83,7 @@ export class HistoriaClinicaController {
 
   @patch('/historia-clinica/{id}')
   @response(204, {
-    description: 'HistoriaClinica PATCH success',
+    description: 'Se ha actualizado la historia clinica',
   })
   async updateById(
     @param.path.string('id') id: string,
@@ -131,7 +101,7 @@ export class HistoriaClinicaController {
 
   @put('/historia-clinica/{id}')
   @response(204, {
-    description: 'HistoriaClinica PUT success',
+    description: 'se ha actualizado la historia clinica',
   })
   async replaceById(
     @param.path.string('id') id: string,
@@ -142,7 +112,7 @@ export class HistoriaClinicaController {
 
   @del('/historia-clinica/{id}')
   @response(204, {
-    description: 'HistoriaClinica DELETE success',
+    description: 'Se ha eliminado la historia clinica',
   })
   async deleteById(@param.path.string('id') id: string): Promise<void> {
     await this.historiaClinicaRepository.deleteById(id);

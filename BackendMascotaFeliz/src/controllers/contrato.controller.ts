@@ -28,7 +28,7 @@ export class ContratoController {
 
   @post('/contrato')
   @response(200, {
-    description: 'Contrato model instance',
+    description: 'Se ha subido el contrato correctamente',
     content: {'application/json': {schema: getModelSchemaRef(Contrato)}},
   })
   async create(
@@ -60,7 +60,7 @@ export class ContratoController {
 
   @get('/contrato')
   @response(200, {
-    description: 'Array of Contrato model instances',
+    description: 'Lista de todos los contratos en la base de datos',
     content: {
       'application/json': {
         schema: {
@@ -76,28 +76,9 @@ export class ContratoController {
     return this.contratoRepository.find(filter);
   }
 
-  @patch('/contrato')
-  @response(200, {
-    description: 'Contrato PATCH success count',
-    content: {'application/json': {schema: CountSchema}},
-  })
-  async updateAll(
-    @requestBody({
-      content: {
-        'application/json': {
-          schema: getModelSchemaRef(Contrato, {partial: true}),
-        },
-      },
-    })
-    contrato: Contrato,
-    @param.where(Contrato) where?: Where<Contrato>,
-  ): Promise<Count> {
-    return this.contratoRepository.updateAll(contrato, where);
-  }
-
   @get('/contrato/{id}')
   @response(200, {
-    description: 'Contrato model instance',
+    description: 'Información del contrato',
     content: {
       'application/json': {
         schema: getModelSchemaRef(Contrato, {includeRelations: true}),
@@ -113,7 +94,7 @@ export class ContratoController {
 
   @patch('/contrato/{id}')
   @response(204, {
-    description: 'Contrato PATCH success',
+    description: 'Se ha actualizado el contrato correctamente',
   })
   async updateById(
     @param.path.string('id') id: string,
@@ -131,7 +112,7 @@ export class ContratoController {
 
   @put('/contrato/{id}')
   @response(204, {
-    description: 'Contrato PUT success',
+    description: 'Se ha actualizado el contrato correctamente',
   })
   async replaceById(
     @param.path.string('id') id: string,
@@ -142,7 +123,7 @@ export class ContratoController {
 
   @del('/contrato/{id}')
   @response(204, {
-    description: 'Contrato DELETE success',
+    description: 'Se ha elimicado el contrato correctamente',
   })
   async deleteById(@param.path.string('id') id: string): Promise<void> {
     await this.contratoRepository.deleteById(id);

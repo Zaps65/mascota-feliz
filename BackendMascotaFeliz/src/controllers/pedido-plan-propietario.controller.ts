@@ -21,7 +21,7 @@ export class PedidoPlanPropietarioController {
   @get('/pedido-planes/{id}/propietario', {
     responses: {
       '200': {
-        description: 'Propietario belonging to PedidoPlan',
+        description: 'La persona responsable del pedido del plan',
         content: {
           'application/json': {
             schema: {type: 'array', items: getModelSchemaRef(Propietario)},

@@ -28,7 +28,7 @@ export class MascotaController {
 
   @post('/mascota')
   @response(200, {
-    description: 'Mascota model instance',
+    description: 'Se ha creado una mascota',
     content: {'application/json': {schema: getModelSchemaRef(Mascota)}},
   })
   async create(
@@ -49,7 +49,7 @@ export class MascotaController {
 
   @get('/mascota/count')
   @response(200, {
-    description: 'Mascota model count',
+    description: 'Total de mascotas registradas',
     content: {'application/json': {schema: CountSchema}},
   })
   async count(
@@ -60,7 +60,7 @@ export class MascotaController {
 
   @get('/mascota')
   @response(200, {
-    description: 'Array of Mascota model instances',
+    description: 'Lista de mascotas registradas',
     content: {
       'application/json': {
         schema: {
@@ -76,28 +76,9 @@ export class MascotaController {
     return this.mascotaRepository.find(filter);
   }
 
-  @patch('/mascota')
-  @response(200, {
-    description: 'Mascota PATCH success count',
-    content: {'application/json': {schema: CountSchema}},
-  })
-  async updateAll(
-    @requestBody({
-      content: {
-        'application/json': {
-          schema: getModelSchemaRef(Mascota, {partial: true}),
-        },
-      },
-    })
-    mascota: Mascota,
-    @param.where(Mascota) where?: Where<Mascota>,
-  ): Promise<Count> {
-    return this.mascotaRepository.updateAll(mascota, where);
-  }
-
   @get('/mascota/{id}')
   @response(200, {
-    description: 'Mascota model instance',
+    description: 'Información de una mascota',
     content: {
       'application/json': {
         schema: getModelSchemaRef(Mascota, {includeRelations: true}),
@@ -113,7 +94,7 @@ export class MascotaController {
 
   @patch('/mascota/{id}')
   @response(204, {
-    description: 'Mascota PATCH success',
+    description: 'Mascota actualizada',
   })
   async updateById(
     @param.path.string('id') id: string,
@@ -131,7 +112,7 @@ export class MascotaController {
 
   @put('/mascota/{id}')
   @response(204, {
-    description: 'Mascota PUT success',
+    description: 'Mascota actualizada',
   })
   async replaceById(
     @param.path.string('id') id: string,
@@ -142,7 +123,7 @@ export class MascotaController {
 
   @del('/mascota/{id}')
   @response(204, {
-    description: 'Mascota DELETE success',
+    description: 'Mascota eliminada',
   })
   async deleteById(@param.path.string('id') id: string): Promise<void> {
     await this.mascotaRepository.deleteById(id);

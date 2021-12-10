@@ -17,7 +17,6 @@ import {
 } from '@loopback/rest';
 import {
 PedidoProductos,
-LineaProductos,
 Productos,
 } from '../models';
 import {PedidoProductosRepository} from '../repositories';
@@ -27,10 +26,10 @@ export class PedidoProductosProductosController {
     @repository(PedidoProductosRepository) protected pedidoProductosRepository: PedidoProductosRepository,
   ) { }
 
-  @get('/pedido-productos/{id}/productos', {
+  @get('/pedido-producto/{id}/producto', {
     responses: {
       '200': {
-        description: 'Array of PedidoProductos has many Productos through LineaProductos',
+        description: 'Lista de los productos que hay en el pedido de productos',
         content: {
           'application/json': {
             schema: {type: 'array', items: getModelSchemaRef(Productos)},
@@ -46,10 +45,10 @@ export class PedidoProductosProductosController {
     return this.pedidoProductosRepository.productos(id).find(filter);
   }
 
-  @post('/pedido-productos/{id}/productos', {
+  @post('/pedido-producto/{id}/producto', {
     responses: {
       '200': {
-        description: 'create a Productos model instance',
+        description: 'Se agrega un nuevo producto a la línea de productos',
         content: {'application/json': {schema: getModelSchemaRef(Productos)}},
       },
     },
@@ -60,7 +59,7 @@ export class PedidoProductosProductosController {
       content: {
         'application/json': {
           schema: getModelSchemaRef(Productos, {
-            title: 'NewProductosInPedidoProductos',
+            title: 'NuevoProductoEnPedidoProductos',
             exclude: ['id'],
           }),
         },
@@ -70,10 +69,10 @@ export class PedidoProductosProductosController {
     return this.pedidoProductosRepository.productos(id).create(productos);
   }
 
-  @patch('/pedido-productos/{id}/productos', {
+  @patch('/pedido-producto/{id}/producto', {
     responses: {
       '200': {
-        description: 'PedidoProductos.Productos PATCH success count',
+        description: 'Se ha actualizado la lista de productos',
         content: {'application/json': {schema: CountSchema}},
       },
     },
@@ -93,7 +92,7 @@ export class PedidoProductosProductosController {
     return this.pedidoProductosRepository.productos(id).patch(productos, where);
   }
 
-  @del('/pedido-productos/{id}/productos', {
+  @del('/pedido-producto/{id}/producto', {
     responses: {
       '200': {
         description: 'PedidoProductos.Productos DELETE success count',

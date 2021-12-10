@@ -28,7 +28,7 @@ export class PedidoPlanController {
 
   @post('/pedido-plan')
   @response(200, {
-    description: 'PedidoPlan model instance',
+    description: 'Se crea un nuevo pedido del plan',
     content: {'application/json': {schema: getModelSchemaRef(PedidoPlan)}},
   })
   async create(
@@ -36,7 +36,7 @@ export class PedidoPlanController {
       content: {
         'application/json': {
           schema: getModelSchemaRef(PedidoPlan, {
-            title: 'NewPedidoPlan',
+            title: 'NuevoPedidoPlan',
             exclude: ['id'],
           }),
         },
@@ -49,7 +49,7 @@ export class PedidoPlanController {
 
   @get('/pedido-plan/count')
   @response(200, {
-    description: 'PedidoPlan model count',
+    description: 'Cantidad total de pedidos del plan',
     content: {'application/json': {schema: CountSchema}},
   })
   async count(
@@ -60,7 +60,7 @@ export class PedidoPlanController {
 
   @get('/pedido-plan')
   @response(200, {
-    description: 'Array of PedidoPlan model instances',
+    description: 'Lista de los pedidos del plan',
     content: {
       'application/json': {
         schema: {
@@ -76,28 +76,9 @@ export class PedidoPlanController {
     return this.pedidoPlanRepository.find(filter);
   }
 
-  @patch('/pedido-plan')
-  @response(200, {
-    description: 'PedidoPlan PATCH success count',
-    content: {'application/json': {schema: CountSchema}},
-  })
-  async updateAll(
-    @requestBody({
-      content: {
-        'application/json': {
-          schema: getModelSchemaRef(PedidoPlan, {partial: true}),
-        },
-      },
-    })
-    pedidoPlan: PedidoPlan,
-    @param.where(PedidoPlan) where?: Where<PedidoPlan>,
-  ): Promise<Count> {
-    return this.pedidoPlanRepository.updateAll(pedidoPlan, where);
-  }
-
   @get('/pedido-plan/{id}')
   @response(200, {
-    description: 'PedidoPlan model instance',
+    description: 'Información del pedido del plan',
     content: {
       'application/json': {
         schema: getModelSchemaRef(PedidoPlan, {includeRelations: true}),
@@ -113,7 +94,7 @@ export class PedidoPlanController {
 
   @patch('/pedido-plan/{id}')
   @response(204, {
-    description: 'PedidoPlan PATCH success',
+    description: 'Se ha actualizado el pedido del plan',
   })
   async updateById(
     @param.path.string('id') id: string,
@@ -131,7 +112,7 @@ export class PedidoPlanController {
 
   @put('/pedido-plan/{id}')
   @response(204, {
-    description: 'PedidoPlan PUT success',
+    description: 'Se ha actualizado el pedido del plan',
   })
   async replaceById(
     @param.path.string('id') id: string,
@@ -142,7 +123,7 @@ export class PedidoPlanController {
 
   @del('/pedido-plan/{id}')
   @response(204, {
-    description: 'PedidoPlan DELETE success',
+    description: 'Se ha eliminado el pedido del plan',
   })
   async deleteById(@param.path.string('id') id: string): Promise<void> {
     await this.pedidoPlanRepository.deleteById(id);

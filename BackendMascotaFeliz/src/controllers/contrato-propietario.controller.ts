@@ -18,10 +18,10 @@ export class ContratoPropietarioController {
     public contratoRepository: ContratoRepository,
   ) { }
 
-  @get('/contratos/{id}/propietario', {
+  @get('/contrato/{id}/propietario', {
     responses: {
       '200': {
-        description: 'Propietario belonging to Contrato',
+        description: 'El propietario relacionado con el contrato',
         content: {
           'application/json': {
             schema: {type: 'array', items: getModelSchemaRef(Propietario)},

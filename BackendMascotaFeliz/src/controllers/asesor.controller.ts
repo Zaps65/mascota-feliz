@@ -27,10 +27,10 @@ export class AsesorController {
     @repository(AsesorRepository)
     public asesorRepository : AsesorRepository,
   ) {}
-
+  @authenticate.skip()
   @post('/asesor')
   @response(200, {
-    description: 'Asesor model instance',
+    description: 'El asesor se ha creado correctamente',
     content: {'application/json': {schema: getModelSchemaRef(Asesor)}},
   })
   async create(
@@ -52,7 +52,7 @@ export class AsesorController {
   @authenticate.skip()
   @get('/asesor/count')
   @response(200, {
-    description: 'Asesor model count',
+    description: 'Cantidad de asesores que se encuentran registrados.',
     content: {'application/json': {schema: CountSchema}},
   })
   async count(
@@ -63,7 +63,7 @@ export class AsesorController {
 
   @get('/asesor')
   @response(200, {
-    description: 'Array of Asesor model instances',
+    description: 'Asesores que se encuentran registrados.',
     content: {
       'application/json': {
         schema: {
@@ -81,7 +81,7 @@ export class AsesorController {
 
   @patch('/asesor')
   @response(200, {
-    description: 'Asesor PATCH success count',
+    description: 'Se ha actualizado la lista de asesores correctamente.',
     content: {'application/json': {schema: CountSchema}},
   })
   async updateAll(
@@ -100,7 +100,7 @@ export class AsesorController {
 
   @get('/asesor/{id}')
   @response(200, {
-    description: 'Asesor model instance',
+    description: 'Información del asesor.',
     content: {
       'application/json': {
         schema: getModelSchemaRef(Asesor, {includeRelations: true}),
@@ -116,7 +116,7 @@ export class AsesorController {
 
   @patch('/asesor/{id}')
   @response(204, {
-    description: 'Asesor PATCH success',
+    description: 'Se ha actualizado el asesor correctamente.',
   })
   async updateById(
     @param.path.string('id') id: string,
@@ -134,7 +134,7 @@ export class AsesorController {
 
   @put('/asesor/{id}')
   @response(204, {
-    description: 'Asesor PUT success',
+    description: 'Se ha actualizado el asesor correctamente.',
   })
   async replaceById(
     @param.path.string('id') id: string,
@@ -145,7 +145,7 @@ export class AsesorController {
 
   @del('/asesor/{id}')
   @response(204, {
-    description: 'Asesor DELETE success',
+    description: 'Se ha eliminado el asesor correctamente.',
   })
   async deleteById(@param.path.string('id') id: string): Promise<void> {
     await this.asesorRepository.deleteById(id);

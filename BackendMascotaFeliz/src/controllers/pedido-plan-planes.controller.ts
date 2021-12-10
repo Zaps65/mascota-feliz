@@ -27,10 +27,10 @@ export class PedidoPlanPlanesController {
     @repository(PedidoPlanRepository) protected pedidoPlanRepository: PedidoPlanRepository,
   ) { }
 
-  @get('/pedido-planes/{id}/planes', {
+  @get('/pedido-plan/{id}/plan', {
     responses: {
       '200': {
-        description: 'Array of PedidoPlan has many Planes through LineaPlanes',
+        description: 'Lista de planes que van en el pedido',
         content: {
           'application/json': {
             schema: {type: 'array', items: getModelSchemaRef(Planes)},
@@ -49,7 +49,7 @@ export class PedidoPlanPlanesController {
   @post('/pedido-planes/{id}/planes', {
     responses: {
       '200': {
-        description: 'create a Planes model instance',
+        description: 'Nueva línea de plan que van en el pedido',
         content: {'application/json': {schema: getModelSchemaRef(Planes)}},
       },
     },
@@ -60,7 +60,7 @@ export class PedidoPlanPlanesController {
       content: {
         'application/json': {
           schema: getModelSchemaRef(Planes, {
-            title: 'NewPlanesInPedidoPlan',
+            title: 'NuevoPlanEnPedidoPlan',
             exclude: ['id'],
           }),
         },
@@ -96,7 +96,7 @@ export class PedidoPlanPlanesController {
   @del('/pedido-planes/{id}/planes', {
     responses: {
       '200': {
-        description: 'PedidoPlan.Planes DELETE success count',
+        description: 'Se ha eliminado el plan del pedido',
         content: {'application/json': {schema: CountSchema}},
       },
     },

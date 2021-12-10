@@ -21,7 +21,7 @@ export class PedidoProductosEmpleadoController {
   @get('/pedido-productos/{id}/empleado', {
     responses: {
       '200': {
-        description: 'Empleado belonging to PedidoProductos',
+        description: 'Empleado encargado de un pedido de productos',
         content: {
           'application/json': {
             schema: {type: 'array', items: getModelSchemaRef(Empleado)},

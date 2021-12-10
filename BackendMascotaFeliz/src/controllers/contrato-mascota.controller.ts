@@ -18,10 +18,10 @@ export class ContratoMascotaController {
     public contratoRepository: ContratoRepository,
   ) { }
 
-  @get('/contratos/{id}/mascota', {
+  @get('/contrato/{id}/mascota', {
     responses: {
       '200': {
-        description: 'Mascota belonging to Contrato',
+        description: 'La mascota relacionada con el contrato',
         content: {
           'application/json': {
             schema: {type: 'array', items: getModelSchemaRef(Mascota)},

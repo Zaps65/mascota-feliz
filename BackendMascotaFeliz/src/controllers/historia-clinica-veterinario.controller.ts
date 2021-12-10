@@ -18,10 +18,10 @@ export class HistoriaClinicaVeterinarioController {
     public historiaClinicaRepository: HistoriaClinicaRepository,
   ) { }
 
-  @get('/historia-clinicas/{id}/veterinario', {
+  @get('/historia-clinica/{id}/veterinario', {
     responses: {
       '200': {
-        description: 'Veterinario belonging to HistoriaClinica',
+        description: 'Veterinario relacionado con la historia clinica',
         content: {
           'application/json': {
             schema: {type: 'array', items: getModelSchemaRef(Veterinario)},

@@ -21,7 +21,7 @@ export class HistorialVisitaDomiciliariaMascotaController {
   @get('/historial-visita-domiciliarias/{id}/mascota', {
     responses: {
       '200': {
-        description: 'Mascota belonging to HistorialVisitaDomiciliaria',
+        description: 'Mascota a la que se le hizo la visita',
         content: {
           'application/json': {
             schema: {type: 'array', items: getModelSchemaRef(Mascota)},

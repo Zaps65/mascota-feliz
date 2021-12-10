@@ -21,7 +21,7 @@ export class MascotaPropietarioController {
   @get('/mascotas/{id}/propietario', {
     responses: {
       '200': {
-        description: 'Propietario belonging to Mascota',
+        description: 'Responsable de la mascota',
         content: {
           'application/json': {
             schema: {type: 'array', items: getModelSchemaRef(Propietario)},

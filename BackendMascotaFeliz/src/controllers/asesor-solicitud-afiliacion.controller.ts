@@ -1,23 +1,14 @@
 import {
-  Count,
-  CountSchema,
   Filter,
-  repository,
-  Where,
+  repository
 } from '@loopback/repository';
 import {
-  del,
   get,
   getModelSchemaRef,
-  getWhereSchemaFor,
-  param,
-  patch,
-  post,
-  requestBody,
+  param
 } from '@loopback/rest';
 import {
-  Asesor,
-  SolicitudAfiliacion,
+  SolicitudAfiliacion
 } from '../models';
 import {AsesorRepository} from '../repositories';
 
@@ -29,7 +20,7 @@ export class AsesorSolicitudAfiliacionController {
   @get('/asesores/{id}/solicitud-afiliaciones', {
     responses: {
       '200': {
-        description: 'Array of Asesor has many SolicitudAfiliacion',
+        description: 'Lista de las solicitudes de afiliaciones gestionadas por un asesor.',
         content: {
           'application/json': {
             schema: {type: 'array', items: getModelSchemaRef(SolicitudAfiliacion)},
@@ -43,68 +34,5 @@ export class AsesorSolicitudAfiliacionController {
     @param.query.object('filter') filter?: Filter<SolicitudAfiliacion>,
   ): Promise<SolicitudAfiliacion[]> {
     return this.asesorRepository.solicitudAfiliacions(id).find(filter);
-  }
-
-  @post('/asesores/{id}/solicitud-afiliaciones', {
-    responses: {
-      '200': {
-        description: 'Asesor model instance',
-        content: {'application/json': {schema: getModelSchemaRef(SolicitudAfiliacion)}},
-      },
-    },
-  })
-  async create(
-    @param.path.string('id') id: typeof Asesor.prototype.id,
-    @requestBody({
-      content: {
-        'application/json': {
-          schema: getModelSchemaRef(SolicitudAfiliacion, {
-            title: 'NewSolicitudAfiliacionInAsesor',
-            exclude: ['id'],
-            optional: ['asesorId']
-          }),
-        },
-      },
-    }) solicitudAfiliacion: Omit<SolicitudAfiliacion, 'id'>,
-  ): Promise<SolicitudAfiliacion> {
-    return this.asesorRepository.solicitudAfiliacions(id).create(solicitudAfiliacion);
-  }
-
-  @patch('/asesores/{id}/solicitud-afiliaciones', {
-    responses: {
-      '200': {
-        description: 'Asesor.SolicitudAfiliacion PATCH success count',
-        content: {'application/json': {schema: CountSchema}},
-      },
-    },
-  })
-  async patch(
-    @param.path.string('id') id: string,
-    @requestBody({
-      content: {
-        'application/json': {
-          schema: getModelSchemaRef(SolicitudAfiliacion, {partial: true}),
-        },
-      },
-    })
-    solicitudAfiliacion: Partial<SolicitudAfiliacion>,
-    @param.query.object('where', getWhereSchemaFor(SolicitudAfiliacion)) where?: Where<SolicitudAfiliacion>,
-  ): Promise<Count> {
-    return this.asesorRepository.solicitudAfiliacions(id).patch(solicitudAfiliacion, where);
-  }
-
-  @del('/asesores/{id}/solicitud-afiliaciones', {
-    responses: {
-      '200': {
-        description: 'Asesor.SolicitudAfiliacion DELETE success count',
-        content: {'application/json': {schema: CountSchema}},
-      },
-    },
-  })
-  async delete(
-    @param.path.string('id') id: string,
-    @param.query.object('where', getWhereSchemaFor(SolicitudAfiliacion)) where?: Where<SolicitudAfiliacion>,
-  ): Promise<Count> {
-    return this.asesorRepository.solicitudAfiliacions(id).delete(where);
   }
 }

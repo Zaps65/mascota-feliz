@@ -18,10 +18,10 @@ export class HistoriaClinicaMascotaController {
     public historiaClinicaRepository: HistoriaClinicaRepository,
   ) { }
 
-  @get('/historia-clinicas/{id}/mascota', {
+  @get('/historia-clinica/{id}/mascota', {
     responses: {
       '200': {
-        description: 'Mascota belonging to HistoriaClinica',
+        description: 'Mascota relacionada con la historia clinica',
         content: {
           'application/json': {
             schema: {type: 'array', items: getModelSchemaRef(Mascota)},

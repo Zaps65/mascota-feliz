@@ -21,7 +21,7 @@ export class ContratoSolicitudAfiliacionController {
   @get('/contratos/{id}/solicitud-afiliacion', {
     responses: {
       '200': {
-        description: 'SolicitudAfiliacion belonging to Contrato',
+        description: 'La solicitud de afiliación relacionada con el contrato',
         content: {
           'application/json': {
             schema: {type: 'array', items: getModelSchemaRef(SolicitudAfiliacion)},

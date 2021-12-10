@@ -10,13 +10,9 @@ import {
   get,
   getModelSchemaRef,
   getWhereSchemaFor,
-  param,
-  patch,
-  post,
-  requestBody,
+  param
 } from '@loopback/rest';
 import {
-  Empleado,
   HistorialVisitaDomiciliaria,
 } from '../models';
 import {EmpleadoRepository} from '../repositories';
@@ -26,10 +22,10 @@ export class EmpleadoHistorialVisitaDomiciliariaController {
     @repository(EmpleadoRepository) protected empleadoRepository: EmpleadoRepository,
   ) { }
 
-  @get('/empleados/{id}/historial-visita-domiciliarias', {
+  @get('/empleado/{id}/historial-visita-domiciliaria', {
     responses: {
       '200': {
-        description: 'Array of Empleado has many HistorialVisitaDomiciliaria',
+        description: 'Lista de todos los historiales de visita hechas por un empleado.',
         content: {
           'application/json': {
             schema: {type: 'array', items: getModelSchemaRef(HistorialVisitaDomiciliaria)},
@@ -45,58 +41,10 @@ export class EmpleadoHistorialVisitaDomiciliariaController {
     return this.empleadoRepository.historialVisitaDomiciliarias(id).find(filter);
   }
 
-  @post('/empleados/{id}/historial-visita-domiciliarias', {
+  @del('/empleado/{id}/historial-visita-domiciliaria', {
     responses: {
       '200': {
-        description: 'Empleado model instance',
-        content: {'application/json': {schema: getModelSchemaRef(HistorialVisitaDomiciliaria)}},
-      },
-    },
-  })
-  async create(
-    @param.path.string('id') id: typeof Empleado.prototype.id,
-    @requestBody({
-      content: {
-        'application/json': {
-          schema: getModelSchemaRef(HistorialVisitaDomiciliaria, {
-            title: 'NewHistorialVisitaDomiciliariaInEmpleado',
-            exclude: ['id'],
-            optional: ['empleadoId']
-          }),
-        },
-      },
-    }) historialVisitaDomiciliaria: Omit<HistorialVisitaDomiciliaria, 'id'>,
-  ): Promise<HistorialVisitaDomiciliaria> {
-    return this.empleadoRepository.historialVisitaDomiciliarias(id).create(historialVisitaDomiciliaria);
-  }
-
-  @patch('/empleados/{id}/historial-visita-domiciliarias', {
-    responses: {
-      '200': {
-        description: 'Empleado.HistorialVisitaDomiciliaria PATCH success count',
-        content: {'application/json': {schema: CountSchema}},
-      },
-    },
-  })
-  async patch(
-    @param.path.string('id') id: string,
-    @requestBody({
-      content: {
-        'application/json': {
-          schema: getModelSchemaRef(HistorialVisitaDomiciliaria, {partial: true}),
-        },
-      },
-    })
-    historialVisitaDomiciliaria: Partial<HistorialVisitaDomiciliaria>,
-    @param.query.object('where', getWhereSchemaFor(HistorialVisitaDomiciliaria)) where?: Where<HistorialVisitaDomiciliaria>,
-  ): Promise<Count> {
-    return this.empleadoRepository.historialVisitaDomiciliarias(id).patch(historialVisitaDomiciliaria, where);
-  }
-
-  @del('/empleados/{id}/historial-visita-domiciliarias', {
-    responses: {
-      '200': {
-        description: 'Empleado.HistorialVisitaDomiciliaria DELETE success count',
+        description: 'Se ha eliminado el historial de visita domiciliaria realizado por un empleado.',
         content: {'application/json': {schema: CountSchema}},
       },
     },

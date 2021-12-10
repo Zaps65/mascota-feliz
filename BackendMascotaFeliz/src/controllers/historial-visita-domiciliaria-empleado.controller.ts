@@ -18,10 +18,10 @@ export class HistorialVisitaDomiciliariaEmpleadoController {
     public historialVisitaDomiciliariaRepository: HistorialVisitaDomiciliariaRepository,
   ) { }
 
-  @get('/historial-visita-domiciliarias/{id}/empleado', {
+  @get('/historial-visita-domiciliaria/{id}/empleado', {
     responses: {
       '200': {
-        description: 'Empleado belonging to HistorialVisitaDomiciliaria',
+        description: 'Empleado que realizo la visita',
         content: {
           'application/json': {
             schema: {type: 'array', items: getModelSchemaRef(Empleado)},

@@ -18,10 +18,10 @@ export class PedidoPlanMascotaController {
     public pedidoPlanRepository: PedidoPlanRepository,
   ) { }
 
-  @get('/pedido-planes/{id}/mascota', {
+  @get('/pedido-plan/{id}/mascota', {
     responses: {
       '200': {
-        description: 'Mascota belonging to PedidoPlan',
+        description: 'Mascota que se le activa el plan',
         content: {
           'application/json': {
             schema: {type: 'array', items: getModelSchemaRef(Mascota)},
