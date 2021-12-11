@@ -26,9 +26,9 @@ export class PedidoProductosController {
     public pedidoProductosRepository : PedidoProductosRepository,
   ) {}
 
-  @post('/pedido-productos')
+  @post('/pedido-producto')
   @response(200, {
-    description: 'PedidoProductos model instance',
+    description: 'Se crea un nuevo pedido de productos',
     content: {'application/json': {schema: getModelSchemaRef(PedidoProductos)}},
   })
   async create(
@@ -36,7 +36,7 @@ export class PedidoProductosController {
       content: {
         'application/json': {
           schema: getModelSchemaRef(PedidoProductos, {
-            title: 'NewPedidoProductos',
+            title: 'NuevoPedidoProductos',
             exclude: ['id'],
           }),
         },
@@ -47,9 +47,9 @@ export class PedidoProductosController {
     return this.pedidoProductosRepository.create(pedidoProductos);
   }
 
-  @get('/pedido-productos/count')
+  @get('/pedido-producto/count')
   @response(200, {
-    description: 'PedidoProductos model count',
+    description: 'Cantidad total de pedidos de productos',
     content: {'application/json': {schema: CountSchema}},
   })
   async count(
@@ -58,9 +58,9 @@ export class PedidoProductosController {
     return this.pedidoProductosRepository.count(where);
   }
 
-  @get('/pedido-productos')
+  @get('/pedido-producto')
   @response(200, {
-    description: 'Array of PedidoProductos model instances',
+    description: 'Lista de los pedidos de productos',
     content: {
       'application/json': {
         schema: {
@@ -76,28 +76,9 @@ export class PedidoProductosController {
     return this.pedidoProductosRepository.find(filter);
   }
 
-  @patch('/pedido-productos')
+  @get('/pedido-producto/{id}')
   @response(200, {
-    description: 'PedidoProductos PATCH success count',
-    content: {'application/json': {schema: CountSchema}},
-  })
-  async updateAll(
-    @requestBody({
-      content: {
-        'application/json': {
-          schema: getModelSchemaRef(PedidoProductos, {partial: true}),
-        },
-      },
-    })
-    pedidoProductos: PedidoProductos,
-    @param.where(PedidoProductos) where?: Where<PedidoProductos>,
-  ): Promise<Count> {
-    return this.pedidoProductosRepository.updateAll(pedidoProductos, where);
-  }
-
-  @get('/pedido-productos/{id}')
-  @response(200, {
-    description: 'PedidoProductos model instance',
+    description: 'Información de un pedido de productos',
     content: {
       'application/json': {
         schema: getModelSchemaRef(PedidoProductos, {includeRelations: true}),
@@ -111,9 +92,9 @@ export class PedidoProductosController {
     return this.pedidoProductosRepository.findById(id, filter);
   }
 
-  @patch('/pedido-productos/{id}')
+  @patch('/pedido-producto/{id}')
   @response(204, {
-    description: 'PedidoProductos PATCH success',
+    description: 'Se ha actualizado el pedido de productos',
   })
   async updateById(
     @param.path.string('id') id: string,
@@ -129,9 +110,9 @@ export class PedidoProductosController {
     await this.pedidoProductosRepository.updateById(id, pedidoProductos);
   }
 
-  @put('/pedido-productos/{id}')
+  @put('/pedido-producto/{id}')
   @response(204, {
-    description: 'PedidoProductos PUT success',
+    description: 'Se ha actualizado el pedido de productos',
   })
   async replaceById(
     @param.path.string('id') id: string,
@@ -140,9 +121,9 @@ export class PedidoProductosController {
     await this.pedidoProductosRepository.replaceById(id, pedidoProductos);
   }
 
-  @del('/pedido-productos/{id}')
+  @del('/pedido-producto/{id}')
   @response(204, {
-    description: 'PedidoProductos DELETE success',
+    description: 'Se ha eliminado el pedido de productos',
   })
   async deleteById(@param.path.string('id') id: string): Promise<void> {
     await this.pedidoProductosRepository.deleteById(id);

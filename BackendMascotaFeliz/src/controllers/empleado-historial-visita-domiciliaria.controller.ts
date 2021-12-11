@@ -1,3 +1,4 @@
+import {authenticate} from '@loopback/authentication';
 import {
   Count,
   CountSchema,
@@ -17,6 +18,7 @@ import {
 } from '../models';
 import {EmpleadoRepository} from '../repositories';
 
+@authenticate('auxiliar')
 export class EmpleadoHistorialVisitaDomiciliariaController {
   constructor(
     @repository(EmpleadoRepository) protected empleadoRepository: EmpleadoRepository,

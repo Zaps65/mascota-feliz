@@ -27,10 +27,10 @@ export class PedidoServicioServiciosController {
     @repository(PedidoServicioRepository) protected pedidoServicioRepository: PedidoServicioRepository,
   ) { }
 
-  @get('/pedido-servicios/{id}/servicios', {
+  @get('/pedido-servicio/{id}/servicio', {
     responses: {
       '200': {
-        description: 'Array of PedidoServicio has many Servicios through LineaServicios',
+        description: 'Lista de los servicios de un pedido',
         content: {
           'application/json': {
             schema: {type: 'array', items: getModelSchemaRef(Servicios)},
@@ -46,10 +46,10 @@ export class PedidoServicioServiciosController {
     return this.pedidoServicioRepository.servicios(id).find(filter);
   }
 
-  @post('/pedido-servicios/{id}/servicios', {
+  @post('/pedido-servicio/{id}/servicio', {
     responses: {
       '200': {
-        description: 'create a Servicios model instance',
+        description: 'Se crea una nueva línea de servicios en un pedido',
         content: {'application/json': {schema: getModelSchemaRef(Servicios)}},
       },
     },
@@ -60,7 +60,7 @@ export class PedidoServicioServiciosController {
       content: {
         'application/json': {
           schema: getModelSchemaRef(Servicios, {
-            title: 'NewServiciosInPedidoServicio',
+            title: 'NuevoServicioEnPedidoServicio',
             exclude: ['id'],
           }),
         },
@@ -70,7 +70,7 @@ export class PedidoServicioServiciosController {
     return this.pedidoServicioRepository.servicios(id).create(servicios);
   }
 
-  @patch('/pedido-servicios/{id}/servicios', {
+  @patch('/pedido-servicio/{id}/servicio', {
     responses: {
       '200': {
         description: 'PedidoServicio.Servicios PATCH success count',
@@ -93,10 +93,10 @@ export class PedidoServicioServiciosController {
     return this.pedidoServicioRepository.servicios(id).patch(servicios, where);
   }
 
-  @del('/pedido-servicios/{id}/servicios', {
+  @del('/pedido-servicio/{id}/servicio', {
     responses: {
       '200': {
-        description: 'PedidoServicio.Servicios DELETE success count',
+        description: 'Se ha eliminado el servicio del pedido',
         content: {'application/json': {schema: CountSchema}},
       },
     },

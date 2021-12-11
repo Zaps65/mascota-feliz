@@ -46,7 +46,7 @@ export class PedidoPlanPlanesController {
     return this.pedidoPlanRepository.planes(id).find(filter);
   }
 
-  @post('/pedido-planes/{id}/planes', {
+  @post('/pedido-plan/{id}/plan', {
     responses: {
       '200': {
         description: 'Nueva línea de plan que van en el pedido',
@@ -70,7 +70,7 @@ export class PedidoPlanPlanesController {
     return this.pedidoPlanRepository.planes(id).create(planes);
   }
 
-  @patch('/pedido-planes/{id}/planes', {
+  @patch('/pedido-plan/{id}/plan', {
     responses: {
       '200': {
         description: 'PedidoPlan.Planes PATCH success count',
@@ -93,7 +93,7 @@ export class PedidoPlanPlanesController {
     return this.pedidoPlanRepository.planes(id).patch(planes, where);
   }
 
-  @del('/pedido-planes/{id}/planes', {
+  @del('/pedido-plan/{id}/plan', {
     responses: {
       '200': {
         description: 'Se ha eliminado el plan del pedido',

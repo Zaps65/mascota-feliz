@@ -18,10 +18,10 @@ export class PedidoProductosPropietarioController {
     public pedidoProductosRepository: PedidoProductosRepository,
   ) { }
 
-  @get('/pedido-productos/{id}/propietario', {
+  @get('/pedido-producto/{id}/propietario', {
     responses: {
       '200': {
-        description: 'Propietario belonging to PedidoProductos',
+        description: 'Persona que encargo el pedido de productos',
         content: {
           'application/json': {
             schema: {type: 'array', items: getModelSchemaRef(Propietario)},

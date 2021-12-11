@@ -21,7 +21,7 @@ export class PedidoServicioPropietarioController {
   @get('/pedido-servicios/{id}/propietario', {
     responses: {
       '200': {
-        description: 'Propietario belonging to PedidoServicio',
+        description: 'Persona que solicita el servicio',
         content: {
           'application/json': {
             schema: {type: 'array', items: getModelSchemaRef(Propietario)},

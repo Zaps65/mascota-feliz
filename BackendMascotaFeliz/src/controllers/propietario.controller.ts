@@ -19,20 +19,20 @@ import {
   response,
   HttpErrors,
 } from '@loopback/rest';
-import {Llaves} from '../config/llaves';
 import {Credenciales, Propietario} from '../models';
 import {PropietarioRepository} from '../repositories';
-import {AutentificacionPropietarioService, ContrasennaService} from '../services';
-const fetch = require('node-fetch');
+import {AutenticacionPropietarioService, ContrasennaService, NotificacionService} from '../services';
 
 export class PropietarioController {
   constructor(
     @repository(PropietarioRepository)
     public propietarioRepository : PropietarioRepository,
-    @service(AutentificacionPropietarioService)
-    public autenticacionPropietarioService: AutentificacionPropietarioService,
+    @service(AutenticacionPropietarioService)
+    public autenticacionPropietarioService: AutenticacionPropietarioService,
     @service(ContrasennaService)
-    public contrasennaService: ContrasennaService
+    public contrasennaService: ContrasennaService,
+    @service(NotificacionService)
+    public notificacionService: NotificacionService,
   ) {}
 
   @post('/login', {
@@ -86,13 +86,14 @@ export class PropietarioController {
       let p = await this.propietarioRepository.create(propietario);
 
       // Notification
-      let to = propietario.correo;
+      /* let to = propietario.correo;
       let subject = 'Registro de usuario';
       let body = `Hola ${propietario.nombre} ${propietario.apellido}, bienvenido a Mascota Feliz. Su nombre de usuario es: ${propietario.correo} Su clave es: ${clave} Gracias por registrarse.`;
       fetch(`${Llaves.urlServiciosNotificaciones}/send_email/?to=${to}&subject=${subject}&body=${body}`)
         .then((data: any) => {
           console.log(data);
-        });
+        }); */
+      this.notificacionService.notificarRegistro(propietario, clave)
 
       return p;return propietario;
   }

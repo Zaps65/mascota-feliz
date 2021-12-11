@@ -1,3 +1,5 @@
+import {authenticate} from '@loopback/authentication';
+import {service} from '@loopback/core';
 import {
   Count,
   CountSchema,
@@ -16,15 +18,51 @@ import {
   del,
   requestBody,
   response,
+  HttpErrors,
 } from '@loopback/rest';
-import {Empleado} from '../models';
+import {Credenciales, Empleado} from '../models';
 import {EmpleadoRepository} from '../repositories';
+import {AutenticacionEmpleadoService, ContrasennaService, NotificacionService} from '../services';
 
+@authenticate('admin')
 export class EmpleadoController {
   constructor(
     @repository(EmpleadoRepository)
     public empleadoRepository : EmpleadoRepository,
+    @service(AutenticacionEmpleadoService)
+    public autenticacionEmpleadoService: AutenticacionEmpleadoService,
+    @service(ContrasennaService)
+    public contrasennaService: ContrasennaService,
+    @service(NotificacionService)
+    public notificacionService: NotificacionService,
   ) {}
+
+  @post('/login/empleado', {
+    responses: {
+      '200': {
+        description: 'Identificación de asesor',
+      }
+    }
+  })
+  async login(
+    @requestBody() credenciales: Credenciales
+  ){
+    let p = await this.autenticacionEmpleadoService.identificarEmpleado(credenciales.username, credenciales.clave);
+    if (p) {
+      let token = this.autenticacionEmpleadoService.generarTokenJWT(p);
+      return {
+        datos:{
+          nombre: p.nombre,
+          apellido: p.apellido,
+          correo: p.correo,
+          id: p.id
+        },
+        tk: token
+      }
+    }else{
+      throw new HttpErrors[401](`Usuario o clave incorrectos`);
+    }
+  }
 
   @post('/empleado')
   @response(200, {
@@ -44,7 +82,13 @@ export class EmpleadoController {
     })
     empleado: Omit<Empleado, 'id'>,
   ): Promise<Empleado> {
-    return this.empleadoRepository.create(empleado);
+    let clave = this.contrasennaService.generarClave();
+    let claveCifrada = this.contrasennaService.cifrarClave(clave);
+    empleado.clave = claveCifrada;
+    let empleadoCreado = await this.empleadoRepository.create(empleado);
+
+    this.notificacionService.notificarRegistro(empleado, clave);
+    return empleadoCreado
   }
 
   @get('/empleado/count')
