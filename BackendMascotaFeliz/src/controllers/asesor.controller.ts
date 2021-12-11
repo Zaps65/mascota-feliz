@@ -37,6 +37,7 @@ export class AsesorController {
     public notificacionService: NotificacionService,
   ) {}
 
+
   @post('/login/asesor', {
     responses: {
       '200': {
@@ -64,6 +65,7 @@ export class AsesorController {
     }
   }
 
+  @authenticate.skip()
   @post('/asesor')
   @response(200, {
     description: 'El asesor se ha creado correctamente',
