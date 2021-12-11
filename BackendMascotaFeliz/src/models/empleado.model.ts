@@ -75,12 +75,6 @@ export class Empleado extends Entity {
   })
   clave?: string;
 
-  @property({
-    type: 'string',
-    default: 'auxiliar',
-  })
-  rol?: string;
-
   @hasMany(() => HistorialVisitaDomiciliaria)
   historialVisitaDomiciliarias: HistorialVisitaDomiciliaria[];
 

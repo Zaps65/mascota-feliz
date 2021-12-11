@@ -57,12 +57,6 @@ export class Asesor extends Entity {
   })
   clave?: string;
 
-  @property({
-    type: 'string',
-    default: 'moderador',
-  })
-  rol?: string;
-
   @hasMany(() => SolicitudAfiliacion)
   solicitudAfiliacions: SolicitudAfiliacion[];
 

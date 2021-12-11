@@ -22,15 +22,17 @@ import {
 import {Llaves} from '../config/llaves';
 import {Credenciales, Propietario} from '../models';
 import {PropietarioRepository} from '../repositories';
-import {AutenticacionService} from '../services';
+import {AutentificacionPropietarioService, ContrasennaService} from '../services';
 const fetch = require('node-fetch');
 
 export class PropietarioController {
   constructor(
     @repository(PropietarioRepository)
     public propietarioRepository : PropietarioRepository,
-    @service(AutenticacionService)
-    public autenticacionService: AutenticacionService,
+    @service(AutentificacionPropietarioService)
+    public autenticacionPropietarioService: AutentificacionPropietarioService,
+    @service(ContrasennaService)
+    public contrasennaService: ContrasennaService
   ) {}
 
   @post('/login', {
@@ -43,9 +45,9 @@ export class PropietarioController {
   async login(
     @requestBody() credenciales: Credenciales
   ){
-    let p = await this.autenticacionService.identificarPropietario(credenciales.username, credenciales.clave);
+    let p = await this.autenticacionPropietarioService.identificarPropietario(credenciales.username, credenciales.clave);
     if (p) {
-      let token = this.autenticacionService.generarTokenJWT(p);
+      let token = this.autenticacionPropietarioService.generarTokenJWT(p);
       return {
         datos:{
           nombre: p.nombre,
@@ -78,8 +80,8 @@ export class PropietarioController {
     })
     propietario: Omit<Propietario, 'id'>,
   ): Promise<Propietario> {
-      let clave = this.autenticacionService.generarClave();
-      let claveCifrada = this.autenticacionService.cifrarClave(clave);
+      let clave = this.contrasennaService.generarClave();
+      let claveCifrada = this.contrasennaService.cifrarClave(clave);
       propietario.clave = claveCifrada;
       let p = await this.propietarioRepository.create(propietario);
 
