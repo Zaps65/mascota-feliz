@@ -47,7 +47,7 @@ export class PropietarioController {
   ){
     let p = await this.autenticacionPropietarioService.identificarPropietario(credenciales.username, credenciales.clave);
     if (p) {
-      let token = this.autenticacionPropietarioService.generarTokenJWT(p);
+      let token = this.autenticacionPropietarioService.generarTokenJWT(p, credenciales.rol);
       return {
         datos:{
           nombre: p.nombre,

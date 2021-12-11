@@ -28,13 +28,13 @@ export class AutenticacionPropietarioService {
     }
   }
 
-  generarTokenJWT(propietario: Propietario){
+  generarTokenJWT(propietario: Propietario, rol: any){
     let token = jwt.sign({
       data:{
         id: propietario.id,
         nombre: `${propietario.nombre} ${propietario.apellido}`,
         correo: propietario.correo,
-        rol: 'user',
+        rol: rol,
       }
     }, Llaves.clavePropietario);
     return token;

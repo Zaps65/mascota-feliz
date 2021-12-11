@@ -3,13 +3,13 @@ import {service} from '@loopback/core';
 import {HttpErrors, Request} from '@loopback/rest';
 import {UserProfile} from '@loopback/security';
 import parseBearerToken from 'parse-bearer-token';
-import {AutenticacionService} from '../services/autenticacion.service';
+import {AutenticacionPropietarioService} from '../services/autentificacion-propietario.service';
 
 export class EstrategiaAministrador implements AuthenticationStrategy {
 
   constructor(
-    @service(AutenticacionService)
-    public autenticacionService: AutenticacionService,
+    @service(AutenticacionPropietarioService)
+    public autenticacionService: AutenticacionPropietarioService,
   ) {}
 
   name: string = 'admin';
